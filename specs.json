@@ -1,10 +1,25 @@
-
 {
   "specs": [
     {
+      "title": "Credential Trust Establishment",
+      "spec_directory": "./credential-trust-establishment",
+      "output_path": "./",
+      "logo": "logo.svg",
+      "logo_link": "https://github.com/decentralized-identity/spec-up",
+      "source": {
+        "host": "github",
+        "account": "decentralized-identity",
+        "repo": "credential-trust-establishment"
+      },
+      "assets": [
+        { "path": "/custom-assets/custom.css" },
+        { "path": "/custom-assets/custom-head.js", "inject": "head" },
+        { "path": "/custom-assets/custom-body.js", "inject": "body" }
+      ]
+    },
+    {
       "title": "Spec-Up Example",
       "spec_directory": "./single-file-test",
-      "output_path": "./",
       "logo": "logo.svg",
       "logo_link": "https://github.com/decentralized-identity/spec-up",
       "source": {
@@ -27,7 +42,7 @@
         "getting-started.md",
         "features.md"
       ],
-      "logo": "../logo.svg",
+      "logo": "logo.svg",
       "logo_link": "https://github.com/decentralized-identity/spec-up",
       "source": {
         "host": "github",
