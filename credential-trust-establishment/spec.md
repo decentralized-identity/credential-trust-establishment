@@ -1,10 +1,10 @@
 Credential Trust Establishment
 ==================
 
-**Specification Status:** Draft
+**Specification Status:** Strawman
 
 **Latest Draft:**
-  [???](???)
+  [identity.foundation/crendtial-trust-establishment](https://identity.foundation/trust-establishment)
 
 Editors:
 ~ [Mike Ebert](https://www.linkedin.com/in/michaelebert/)
