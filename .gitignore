@@ -105,3 +105,6 @@ dist
 .tern-port
 
 build/**
+
+# misc
+.DS_Store
