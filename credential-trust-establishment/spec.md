@@ -18,7 +18,7 @@ Participate:
 ------------------------------------
 
 ## Introduction
-Once you can create a trust list using Trust Establishment, it is useful to extend Trust Establishment by defining roles and linking them to credentials for situations where:
+Once you can create a trust list using [Trust Establishment](https://identity.foundation/trust-establishment/) , it is useful to extend Trust Establishment by defining roles and linking them to credentials for situations where:
 1. Enumerating every trusted ecosystem participant in a governance file is not practical (or, in some cases, not possible).
 2. It may be desirable to verify a participant's trusted status via a trust list entry AND/OR a credential.
 
