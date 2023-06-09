@@ -22,7 +22,7 @@ Once you can create a trust list using Trust Establishment, it is useful to exte
 1. Enumerating every trusted ecosystem participant in a governance file is not practical (or, in some cases, not possible).
 2. It may be desirable to verify a participant's trusted status via a trust list entry AND/OR a credential.
 
-Some of the most important roles are those tied to the issuing or verifying of credentials, so it is also necessary to tie roles to credential schemas.
+Some of the most important roles are those tied to the issuing and/or verifying of credentials, so it is also necessary to tie roles to credential schemas.
 
 Collecting all of this information in one place for ecosystem participants to access is powerful and convenient. A governance file is one relatively simple method for delivering trust establishment information.
 
