@@ -33,25 +33,31 @@ The following sections cover what is required to enable Credential Trust Establi
 - Governance File Metadata
 
 ## Schemas
-It is very useful to provide a list of schemas which are used in an ecosystem. This list can be quite simple, basically listing schema IDs and a human-friendly name. Here is an example for a U.S.-based higher education ecosystem:
+The schemas section of the format specifies the schemas used in an ecosystem. Each list item describes a single schema.
+
+Each schema is described with the following attributes:
+- **id**: the identifier of the schema. This identifier must be URI that links to the schema definition. This identifier is used to refer to this schema elsewhere in the data model. This identifier is not intended to be visible during normal use.
+- **name**: The human readable name for this credential. This name should be used to refer to this credential in any user interfaces.
+
+Here is an example for a U.S.-based higher education ecosystem:
 
 ```json
 ...
 	"schemas": [
 		{
-			"id": "PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0",
+			"id": "uri:example:PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0",
 			"name": "Accrediting Body",
 		},
 		{
-			"id": "BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0",
+			"id": "uri:example:BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0",
 			"name": "University Degree Issuer",
 		},
 		{
-			"id": "QHqtjywxfZ3yYsFrRHFLQm:2:Bachelors_Degree:1.0",
+			"id": "uri:example:QHqtjywxfZ3yYsFrRHFLQm:2:Bachelors_Degree:1.0",
 			"name": "Bachelors Degree",
 		},
 		{
-			"id": "JAjLqtPexs3yYsFrRHFLQm:2:Student_ID:1.0",
+			"id": "uri:example:JAjLqtPexs3yYsFrRHFLQm:2:Student_ID:1.0",
 			"name": "Student ID",
 		}
 	],
