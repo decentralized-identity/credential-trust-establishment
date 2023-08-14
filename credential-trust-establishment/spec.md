@@ -59,39 +59,45 @@ It is very useful to provide a list of schemas which are used in an ecosystem. T
 ```
 
 ## Roles
-Roles are important in an ecosystem because they explain what the trusted ecosystem participants are trusted FOR.
 
-Roles are named using a string that is easily usable in programming code and, where necessary or useful, linked to a credential with a "granted_by" statement.
+Roles define the different types of activities that are present in the ecosystem. 
 
-Some actions that can be performed by a role make sense to include with the role, such as "issue" and "verify." These "verbs" are linked to particular schemas.
+Each role is represented in a struct, where the key is the name of the role, and the value is a struct with values defining the role. The name of the role is not intended to be displayed, but used as a reference elsewhere in the data structure. Any names may be chosen for the convenience of governance maintanance. The role name must consist of alphanumeric characters, dashes, and underscores.
 
-In the future, it will make sense to create separate actions and workflows that describe what can be done in an ecosystem and link them to roles outside of the role declaration.
+Roles are described with the following attributes:
+- **issue**: This is the list of the Schema IDs that this role is authorized to issue. The Schemas MUST be present in the schema section of the document.
+- **verify**: This is the list of the Schema IDs that this role is authorized to verify. The Schemas MUST be present in the schema section of the document.
+- **granted_by**: This, if present, specifies the Schema ID that, upon presentation, qualifies the subject to have this role. Any Schema specified here MUST be defined in the Schemas section of the document and aproved verifiers specified via a role defined in the Roles section.
+
+Roles may omit any attributes that do not apply.
+
+This example shows potential roles used in a univeristy diploma ecosystem application.
 
 ```json
 ...
 	"roles": {
 		"accrediting_authorizer": {
 			"issue": [
-				"PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0"
+				"uri:example:PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0"
 			]
 		},
 		"university_accreditor": {
 			"issue": [
-				"BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
+				"uri:example:BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
 			],
-			"granted_by": "PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0"
+			"granted_by": "uri:example:PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0"
 		},
 		"verify_student_id": {
 			"verify": [
-				"JAjLqtPexs3yYsFrRHFLQm:2:Student_ID:1.0"
+				"uri:example:JAjLqtPexs3yYsFrRHFLQm:2:Student_ID:1.0"
 			],
-			"granted_by": "BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
+			"granted_by": "uri:example:BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
 		},
 		"issue_bachelors_degree": {
 			"issue": [
-				"Lor8tASDc74EA268Jvc8J2:2:Bachelors_Degree:1.0"
+				"uri:example:Lor8tASDc74EA268Jvc8J2:2:Bachelors_Degree:1.0"
 			],
-			"granted_by": "BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
+			"granted_by": "uri:example:BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
 		},
 	}
 ...
