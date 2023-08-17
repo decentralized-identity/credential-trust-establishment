@@ -192,19 +192,19 @@ Finally, universities verify student IDs and issue degrees (such as a bachelors 
 	"ttl": 86400,
 	"schemas": [
 		{
-			"id": "PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0",
+			"id": "uri:example:PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0",
 			"name": "Accrediting Body",
 		},
 		{
-			"id": "BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0",
+			"id": "uri:example:BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0",
 			"name": "University Degree Issuer",
 		},
 		{
-			"id": "QHqtjywxfZ3yYsFrRHFLQm:2:Bachelors_Degree:1.0",
+			"id": "uri:example:QHqtjywxfZ3yYsFrRHFLQm:2:Bachelors_Degree:1.0",
 			"name": "Bachelors Degree",
 		},
 		{
-			"id": "JAjLqtPexs3yYsFrRHFLQm:2:Student_ID:1.0",
+			"id": "uri:example:JAjLqtPexs3yYsFrRHFLQm:2:Student_ID:1.0",
 			"name": "Student ID",
 		}
 	],
@@ -254,26 +254,26 @@ Finally, universities verify student IDs and issue degrees (such as a bachelors 
 	"roles": {
 		"accrediting_authorizer": {
 			"issue": [
-				"PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0"
+				"uri:example:PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0"
 			]
 		},
 		"university_accreditor": {
 			"issue": [
-				"BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
+				"uri:example:BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
 			],
-			"granted_by": "PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0"
+			"granted_by": "uri:example:PdiVKGAjdiVKGAjLqtTroc:2:Accrediting_Body:1.0"
 		},
 		"verify_student_id": {
 			"verify": [
-				"JAjLqtPexs3yYsFrRHFLQm:2:Student_ID:1.0"
+				"uri:example:JAjLqtPexs3yYsFrRHFLQm:2:Student_ID:1.0"
 			],
-			"granted_by": "BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
+			"granted_by": "uri:example:BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
 		},
 		"issue_bachelors_degree": {
 			"issue": [
-				"Lor8tASDc74EA268Jvc8J2:2:Bachelors_Degree:1.0"
+				"uri:example:Lor8tASDc74EA268Jvc8J2:2:Bachelors_Degree:1.0"
 			],
-			"granted_by": "BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
+			"granted_by": "uri:example:BXtzYPyPdiVKGAjLqtPexs:2:University_Degree_Issuer:1.0"
 		},
 	}
 }
@@ -311,12 +311,12 @@ The governance file lists three roles: one for the DIF itself, one for organizat
 	"docs_uri": "https://url-for-docs...",
 	"schemas": [
 		{
-			"id": "RuuJwd3JMffNwZ43DcJKN1:2:DIF_Member_Organization:1.4",
+			"id": "uri:example:RuuJwd3JMffNwZ43DcJKN1:2:DIF_Member_Organization:1.4",
 			"name": "DIF Member Organization",
 			"issuer_roles": ["dif"]
 		},
 		{
-			"id": "4CLG5pU5v294VdkMWxSByu:2:DIF_Member_Individual:1.0",
+			"id": "uri:example:4CLG5pU5v294VdkMWxSByu:2:DIF_Member_Individual:1.0",
 			"name": "DIF Individual Member",
 			"issuer_roles": ["dif", "dif_member_organization"],
 		}
@@ -326,34 +326,33 @@ The governance file lists three roles: one for the DIF itself, one for organizat
 		"author": "did:example:dif",
 		"created": "2020-01-01T19:23:24Z",
 		"version": 2,
-		"topic": "uri:to-multi-topic-schema",
 		"entries": {
-			"did:example:dif": {
-				"uri:to-role_schema": {
-					"roles": ["dif"],
-				},
-				"uri:to-describe_schema": {
+			"https://example.com/description.schema.json": {
+				"did:example:dif": {
 					"name": "Decentralized Identity Foundation",
 					"website": "https://identity.foundation/",
 					"email": "membership@identity.foundation"
-				}
-			},
-			"did:example:indicio": {
-				"uri:to-role_schema": {
-					"roles": ["dif_member_organization"],
 				},
-				"uri:to-describe_schema": {
+				"did:example:indicio":{
 					"name": "Indicio",
 					"website": "https://indicio.tech/",
 					"email": "contact@indicio.tech"
 				}
 			},
+			"https://example.com/roles.schema.json":{
+				"did:example:dif": {
+					"roles": ["dif"],
+				},
+				"did:example:indicio":{
+					"roles": ["dif_member_organization"],
+				}
+			}
 		}
 	},
 	"roles": {
 		"dif": {},
 		"dif_membership_organization": {
-			"credentials": ["RuuJwd3JMffNwZ43DcJKN1:2:DIF_Member_Organization:1.4"]
+			"credentials": ["uri:example:RuuJwd3JMffNwZ43DcJKN1:2:DIF_Member_Organization:1.4"]
 		},
 		"holder": {}
 	}
@@ -391,12 +390,12 @@ The governance file lists three roles: one for the AWG itself, one for issuers, 
 	"docs_uri": "https://url-for-docs...",
 	"schemas": [
 		{
-			"id": "RuuJwd3JMffNwZ43DcJKN1:2:Email_Issuer:1.4",
+			"id": "uri:example:RuuJwd3JMffNwZ43DcJKN1:2:Email_Issuer:1.4",
 			"name": "Email Issuer",
 			"issuer_roles": ["awg"]
 		},
 		{
-			"id": "BXtzYPyPdiVKGAjkqtPexs:2:Email:1.0",
+			"id": "uri:example:BXtzYPyPdiVKGAjkqtPexs:2:Email:1.0",
 			"name": "Email",
 			"issuer_roles": ["email_issuer"],
 		}
@@ -406,34 +405,33 @@ The governance file lists three roles: one for the AWG itself, one for issuers, 
 		"author": "did:example:awg",
 		"created": "2022-01-01T19:23:24Z",
 		"version": 2,
-		"topic": "uri:to-multi-topic-schema",
 		"entries": {
-			"did:example:dif": {
-				"uri:to-role_schema": {
-					"roles": ["awg"],
-				},
-				"uri:to-describe_schema": {
+			"https://example.com/description.schema.json": {
+				"did:example:awg": {
 					"name": "Aries Working Group",
 					"website": "https://wiki.hyperledger.org/display/ARIES/Aries+Working+Group",
 					"email": "awg@hyperledger.org"
-				}
-			},
-			"did:example:indicio": {
-				"uri:to-role_schema": {
-					"roles": ["email_issuer"],
 				},
-				"uri:to-describe_schema": {
+				"did:example:indicio":{
 					"name": "Indicio",
 					"website": "https://indicio.tech/",
 					"email": "contact@indicio.tech"
 				}
 			},
-		}
+			"https://example.com/roles.schema.json":{
+				"did:example:awg": {
+					"roles": ["awg"],
+				},
+				"did:example:indicio":{
+					"roles": ["email_issuer"],
+				}
+			}
+		},
 	},
 	"roles": {
 		"awg": {},
 		"email_issuer": {
-			"credentials": ["RuuJwd3JMffNwZ43DcJKN1:2:Email_Issuer:1.4"]
+			"credentials": ["uri:example:RuuJwd3JMffNwZ43DcJKN1:2:Email_Issuer:1.4"]
 		},
 		"holder": {}
 	}
