@@ -139,6 +139,9 @@ As with Trust Establishment, it makes sense to add some meta data to the governa
 
 The full University Diploma example used in this document is included as the first sample listed in the Appendix.
 
+**trusted_governance** (optional): Contains a list of URIs for goverance files trusted by the author of THIS governance file. If you trust this governance file, you should (under the opinion of this governance's author) trust these as well. 
+TODO: Include a note about how to link to a specific version  / general version of governance file when versioning is added.
+
 ```json
 {
 	"@context": [
@@ -153,6 +156,9 @@ The full University Diploma example used in this document is included as the fir
 	"author": "did:example:usdepartmentofeducation",
 	"docs_uri": "https://url-for-docs...",
 	"ttl": 86400,
+	"trusted_governance":[
+		"https://example.com/other/trusted/goveranance"
+	]
 ...
 ```
 
