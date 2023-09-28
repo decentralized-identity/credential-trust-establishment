@@ -32,6 +32,11 @@ The following sections cover what is required to enable Credential Trust Establi
 - Linking Participants to Roles
 - Governance File Metadata
 
+## Participant Expectations
+This data model is the expression about trust from the publisher, who signs the document. Any information in the document is assumed to be the carefully selected choices of the publisher, including any schemas, participants, and linked governance files. Publishing the file itself places no requirement on any other participant to read or respect the opinions of the file. 
+
+The Governance File is read by ecosystem participants to understand the opinion of the publisher. Compliance with the format places no requirement for participants to respect or follow the same opinions. Participants may also choose to respect only a portion of the published governance. Ecosystem factors outside the scope of this format may influence participant behavior.
+
 ## Schemas
 The schemas section of the format specifies the schemas used in an ecosystem. Each list item describes a single schema.
 
@@ -135,9 +140,12 @@ Once schemas are listed and roles are described, they need to be linked to the t
 ```
 
 ## Governance File Metadata
-As with Trust Establishment, it makes sense to add some meta data to the governance file to assist those who are using the file.
+As with Trust Establishment, it makes sense to add some meta data to the governance file to assist those who are using the file. See (Linked Governance)[#]
 
 The full University Diploma example used in this document is included as the first sample listed in the Appendix.
+
+**trusted_governance** (optional): Contains a list of publisher DIDs and document URIs for goverance files trusted by the author of THIS governance file. Upon retrieval, the document must be signed by the stated publisher to be considered valid.
+TODO: Include a note about how to link to a specific version  / general version of governance file when versioning is added.
 
 ```json
 {
@@ -153,8 +161,20 @@ The full University Diploma example used in this document is included as the fir
 	"author": "did:example:usdepartmentofeducation",
 	"docs_uri": "https://url-for-docs...",
 	"ttl": 86400,
+	"trusted_governance":[
+		{
+			"publisher": "did:example:publisher",
+			"uri": "https://example.com/other/trusted/goveranance"
+		}
+	]
 ...
 ```
+
+### Linked Goverance
+
+Linked governance files provide a flexible mechanism for governing larger ecosystems. Higher authorities can bundle governance together. Lower authorities can reference higher authorities. The result is a straightforward mecanism for practical ecosystem governance.
+
+Linked governance allows for governance chains to exist - the inclusion of an external governance file allows that governance to itself reference other governance files. While in theory this allows for infiniately long chains, in practice the requirement for the publisher to trust linked files places a reasonable limit. Also see (Expectations)[#expectations] for further commentary on the responsiblities of the publisher and reader.
 
 ## Appendix
 Below are three examples of governance files which include sections for schemas, trust establishment lists, roles, and governance file meta data.
