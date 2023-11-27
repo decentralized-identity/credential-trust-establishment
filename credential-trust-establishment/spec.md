@@ -116,23 +116,46 @@ This example shows potential roles used in a univeristy diploma ecosystem applic
 
 ## Linking Participants to Roles
 Once schemas are listed and roles are described, they need to be linked to the trusted participants. This is done by adding a new section to the Trust Establishment section of the document.
+
+The new section contains the enumerated sections of roles for a participant, along with the time range the role applies.
+
+**start**: REQUIRED. The ISO 8601 encoded date and time of when the role was assigned to the participant.
+**end**: OPTIONAL. The ISO 8601 encoded date and time of when the role was removed from the participant. This should not be present if the end date is not known.
+**role***: REQUIRED. The name of the role, used within the roles section of this document.
+
+
 ```json
 ...
 			"https://example.com/roles.schema.json": {
 				"did:example:usdepartmentofeducation": {
 					"roles": [
-						"accrediting_authorizer"
+						{
+							"start": "2023-02-25 00:00:00Z",
+							"role": "accrediting_authorizer"
+						}
 					]
 				},
 				"did:example:nwccu": {
 					"roles": [
-						"university_accreditor"
+						{
+							"start": "2023-02-25 00:00:00Z",
+							"role": "university_accreditor"
+						}
 					]
 				},
-				"did:example:brighamyounguniversity": {
+				"did:example:faberuniversity": {
 					"roles": [
-						"verify_student_id"
-						"issue_bachelors_degree",
+						{
+							"start": "2023-02-25 00:00:00Z",
+							"role": "verify_student_id"
+						},{
+							"start": "2020-01-01 00:00:00Z",
+							"end": "2021-01-01 00:00:00Z",
+							"role": "issue_bachelors_degree"
+						},{
+							"start": "2022-01-01 00:00:00Z",
+							"role": "issue_bachelors_degree"
+						}
 					]
 				}
 			}
@@ -245,27 +268,42 @@ Finally, universities verify student IDs and issue degrees (such as a bachelors 
 					"website": "http://www.nwccu.org/",
 					"email": "accrediting@nwccu.org"
 				},
-				"did:example:brighamyounguniversity": {
-					"name": "Brigham Young University",
-					"website": "https://www.byu.edu/",
-					"email": "graduation@byu.edu"
+				"did:example:faberuniversity": {
+					"name": "Faber University",
+					"website": "https://faber.example.com/",
+					"email": "graduation@faber.example.com"
 				}
 			},
-			"https://example.com/roles.schema.json": {
+			"https://example.com/roles.schema.json":  {
 				"did:example:usdepartmentofeducation": {
 					"roles": [
-						"accrediting_authorizer"
+						{
+							"start": "2023-02-25 00:00:00Z",
+							"role": "accrediting_authorizer"
+						}
 					]
 				},
 				"did:example:nwccu": {
 					"roles": [
-						"university_accreditor"
+						{
+							"start": "2023-02-25 00:00:00Z",
+							"role": "university_accreditor"
+						}
 					]
 				},
-				"did:example:brighamyounguniversity": {
+				"did:example:faberuniversity": {
 					"roles": [
-						"verify_student_id"
-						"issue_bachelors_degree",
+						{
+							"start": "2023-02-25 00:00:00Z",
+							"role": "verify_student_id"
+						},{
+							"start": "2020-01-01 00:00:00Z",
+							"end": "2021-01-01 00:00:00Z",
+							"role": "issue_bachelors_degree"
+						},{
+							"start": "2022-01-01 00:00:00Z",
+							"role": "issue_bachelors_degree"
+						}
 					]
 				}
 			}
@@ -353,28 +391,39 @@ The governance file lists three roles: one for the DIF itself, one for organizat
 					"website": "https://identity.foundation/",
 					"email": "membership@identity.foundation"
 				},
-				"did:example:indicio":{
+				"did:example:acme":{
 					"name": "Indicio",
-					"website": "https://indicio.tech/",
-					"email": "contact@indicio.tech"
+					"website": "https://example.com/",
+					"email": "contact@example.com"
 				}
 			},
 			"https://example.com/roles.schema.json":{
-				"did:example:dif": {
-					"roles": ["dif"],
-				},
-				"did:example:indicio":{
-					"roles": ["dif_member_organization"],
+				"did:example:dif": [
+					{
+							"start": "2020-01-01 00:00:00Z",
+							"role": "dif"
+					}
+				],
+				"did:example:acme":{
+					{
+							"start": "2020-01-01 00:00:00Z",
+							"role": "dif_member_organization"
+					}
 				}
 			}
 		}
 	},
 	"roles": {
-		"dif": {},
-		"dif_membership_organization": {
-			"credentials": ["uri:example:RuuJwd3JMffNwZ43DcJKN1:2:DIF_Member_Organization:1.4"]
+		"dif": {
+			"issue": [
+				"uri:example:RuuJwd3JMffNwZ43DcJKN1:2:DIF_Member_Organization:1.4", 
+				"uri:example:4CLG5pU5v294VdkMWxSByu:2:DIF_Member_Individual:1.0"
+			]
 		},
-		"holder": {}
+		"dif_membership_organization": {
+			"issue": ["uri:example:4CLG5pU5v294VdkMWxSByu:2:DIF_Member_Individual:1.0"],
+			"granted_by": "uri:example:RuuJwd3JMffNwZ43DcJKN1:2:DIF_Member_Organization:1.4"
+		}
 	}
 }
 ```
@@ -411,13 +460,11 @@ The governance file lists three roles: one for the AWG itself, one for issuers, 
 	"schemas": [
 		{
 			"id": "uri:example:RuuJwd3JMffNwZ43DcJKN1:2:Email_Issuer:1.4",
-			"name": "Email Issuer",
-			"issuer_roles": ["awg"]
+			"name": "Email Issuer"
 		},
 		{
 			"id": "uri:example:BXtzYPyPdiVKGAjkqtPexs:2:Email:1.0",
-			"name": "Email",
-			"issuer_roles": ["email_issuer"],
+			"name": "Email"
 		}
 	],
 	"participants": {
@@ -432,28 +479,36 @@ The governance file lists three roles: one for the AWG itself, one for issuers, 
 					"website": "https://wiki.hyperledger.org/display/ARIES/Aries+Working+Group",
 					"email": "awg@hyperledger.org"
 				},
-				"did:example:indicio":{
-					"name": "Indicio",
-					"website": "https://indicio.tech/",
-					"email": "contact@indicio.tech"
+				"did:example:acme":{
+					"name": "ACME",
+					"website": "https://example.com/",
+					"email": "contact@example.com"
 				}
 			},
 			"https://example.com/roles.schema.json":{
-				"did:example:awg": {
-					"roles": ["awg"],
-				},
-				"did:example:indicio":{
-					"roles": ["email_issuer"],
-				}
+				"did:example:awg": [
+					{
+							"start": "2020-01-01 00:00:00Z",
+							"role": "awg"
+					}
+				],
+				"did:example:acme":[
+					{
+							"start": "2020-01-01 00:00:00Z",
+							"role": "email_issuer"
+					}
+				]
 			}
 		},
 	},
 	"roles": {
-		"awg": {},
-		"email_issuer": {
-			"credentials": ["uri:example:RuuJwd3JMffNwZ43DcJKN1:2:Email_Issuer:1.4"]
+		"awg": {
+			"issue": ["uri:example:RuuJwd3JMffNwZ43DcJKN1:2:Email_Issuer:1.4"]
 		},
-		"holder": {}
+		"email_issuer": {
+			"issue": ["uri:example:BXtzYPyPdiVKGAjkqtPexs:2:Email:1.0"],
+			"granted_by": ["uri:example:RuuJwd3JMffNwZ43DcJKN1:2:Email_Issuer:1.4"]
+		}
 	}
 }
 ```
