@@ -167,6 +167,22 @@ As with Trust Establishment, it makes sense to add some meta data to the governa
 
 The full University Diploma example used in this document is included as the first sample listed in the Appendix.
 
+**name**: REQUIRED. User oriented title of this document.
+
+**description**: OPTIONAL. User oriented description of this document. Usually a more informative description than the name alone.
+
+**version**: REQUIRED. Version string of this document. Must follow SemVer OR be lexographicly increasing version strings.
+
+**format**: REQUIRED. Version of this data type. Current version is "1.0"
+
+**last_updated**: REQUIRED. ISO 8601 string when this document was published.
+
+**author**: REQUIRED. DID of the party publishing this document.
+
+**docs_uri**: OPTIONAL. URI for human-oriented documentation for this governance.
+
+**ttl**: OPTIONAL. Expected length of time this version of the document is expected to be valid. This suggests to consumers of this document the interval at which it should be checked for updates.
+
 **trusted_governance** (optional): Contains a list of publisher DIDs and document URIs for goverance files trusted by the author of THIS governance file. Upon retrieval, the document must be signed by the stated publisher to be considered valid.
 TODO: Include a note about how to link to a specific version  / general version of governance file when versioning is added.
 
@@ -177,9 +193,9 @@ TODO: Include a note about how to link to a specific version  / general version 
 	],
 	"id": "c64846d1-cf60-4ac5-835e-cbd25569f2fa",
 	"name": "University Degree Governance",
+	"description": "This document describes the governance for issuing accredited university degrees in a machine readable way",
 	"version": "1.0",
 	"format": "1.0",
-	"description": "This document describes the governance for issuing accredited university degrees in a machine readable way",
 	"last_updated": "2022-04-20T04:20:00Z",
 	"author": "did:example:usdepartmentofeducation",
 	"docs_uri": "https://url-for-docs...",
