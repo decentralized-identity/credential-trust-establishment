@@ -238,15 +238,15 @@ The version (stringified) is used to generate a unique name of the current versi
 
 ```json
 {
-  "current_version": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/2023_11_16_16_44_12.json"
+  "current_version": "https://example.com/path/to/cte/2023_11_16_16_44_12.json"
 }
 ```
 
-The "degov" is a generic name of the base uri to point to the most curent version of the file. Example:
+The "degov" (Decentrilized Ecosystem Governance) is a generic name of the base uri to point to the most curent version of the file. This could be changed to any generic name of your choice as long as this is consistent within the ecosystem you are working with. Example:
 
 ```json
 {
-  "uri": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/degov.json"
+  "uri": "https://example.com/path/to/cte/degov.json"
 }
 ```
 
@@ -254,11 +254,11 @@ Previous versions is an array of objects represented by the version (stringified
 
 ```json
 {
-  "current_version": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/2023_11_16_16_44_12.json",
+  "current_version": "https://example.com/path/to/cte/2023_11_16_16_44_12.json",
   "previous_versions": [
     {
       "version": "2023-11-16T16:39:53",
-      "uri": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/2023_11_16_16_39_53.json"
+      "uri": "https://example.com/path/to/cte/2023_11_16_16_39_53.json"
     }
   ]
 }
