@@ -226,7 +226,7 @@ Linked governance allows for governance chains to exist - the inclusion of an ex
 
 Versioning is a way to allow users of decentralized ecosystem governance to track/use the current version of published governance or track/use older version of the file. This allowes flexibility of using/tracking most current version of DEGov file at any time.
 
-ISO 8601 date format is used to describe the version of the current file. Example:
+ISO 8601 date format is used to describe the version of the current file. It should require the version be lexographically increasing, and only recommend using an ISO date. Example:
 
 ```json
 {
@@ -242,11 +242,11 @@ The version (stringified) is used to generate a unique name of the current versi
 }
 ```
 
-The "degov" (Decentrilized Ecosystem Governance) is a generic name of the base uri to point to the most curent version of the file. This could be changed to any generic name of your choice as long as this is consistent within the ecosystem you are working with. Example:
+The base uri can point to a file with any file name of your choice as long as this is consistent within the ecosystem you are working with. Example:
 
 ```json
 {
-  "uri": "https://example.com/path/to/cte/degov.json"
+  "uri": "https://example.com/path/to/cte/file.json"
 }
 ```
 
@@ -269,7 +269,7 @@ Full example:
 ```json
 {
   "version": "2023-11-16T16:44:12",
-  "uri": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/degov.json",
+  "uri": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/file.json",
   "current_version": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/2023_11_16_16_44_12.json",
   "previous_versions": [
     {
