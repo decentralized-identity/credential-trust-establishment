@@ -226,11 +226,11 @@ Linked governance allows for governance chains to exist - the inclusion of an ex
 
 Versioning is a way to allow users of decentralized ecosystem governance to track/use the current version of published governance or track/use older version of the file. This allowes flexibility of using/tracking most current version of DEGov file at any time.
 
-ISO 8601 date format is used to describe the version of the current file. It should require the version be lexographically increasing, and only recommend using an ISO date. Example:
+The version of the current file is indicated by an integer. Each subsequent published version of this file must increment this version number by 1, ensuring a clear and linear version history. Example:
 
 ```json
 {
-  "version": "2023-11-16T16:44:12"
+  "version": 1
 }
 ```
 
@@ -238,7 +238,7 @@ The version (stringified) is used to generate a unique name of the current versi
 
 ```json
 {
-  "current_version": "https://example.com/path/to/cte/2023_11_16_16_44_12.json"
+  "current_version": "https://example.com/path/to/cte/1.json"
 }
 ```
 
@@ -254,11 +254,11 @@ Previous versions is an array of objects represented by the version (stringified
 
 ```json
 {
-  "current_version": "https://example.com/path/to/cte/2023_11_16_16_44_12.json",
+  "current_version": "https://example.com/path/to/cte/2.json",
   "previous_versions": [
     {
-      "version": "2023-11-16T16:39:53",
-      "uri": "https://example.com/path/to/cte/2023_11_16_16_39_53.json"
+      "version": 2,
+      "uri": "https://example.com/path/to/cte/1.json"
     }
   ]
 }
@@ -268,13 +268,13 @@ Full example:
 
 ```json
 {
-  "version": "2023-11-16T16:44:12",
+  "version": 2,
   "uri": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/file.json",
-  "current_version": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/2023_11_16_16_44_12.json",
+  "current_version": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/2.json",
   "previous_versions": [
     {
-      "version": "2023-11-16T16:39:53",
-      "uri": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/2023_11_16_16_39_53.json"
+      "version": 1,
+      "uri": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/1.json"
     }
   ]
 }
