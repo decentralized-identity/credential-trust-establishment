@@ -269,12 +269,12 @@ Full example:
 ```json
 {
   "version": 2,
-  "uri": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/file.json",
-  "current_version": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/2.json",
+  "uri": "https://example.com/path/to/cte/file.json",
+  "current_version": "https://example.com/path/to/cte/2.json",
   "previous_versions": [
     {
       "version": 1,
-      "uri": "https://governance-files-2.s3.us-west-2.amazonaws.com/proven/1.json"
+      "uri": "https://example.com/path/to/cte/1.json"
     }
   ]
 }
