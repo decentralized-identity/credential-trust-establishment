@@ -257,7 +257,7 @@ Previous versions is an array of objects represented by the version and uri poin
   "current_version": "https://example.com/path/to/cte/2.json",
   "previous_versions": [
     {
-      "version": 2,
+      "version": 1,
       "uri": "https://example.com/path/to/cte/1.json"
     }
   ]
