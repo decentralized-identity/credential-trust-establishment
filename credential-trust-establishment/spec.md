@@ -250,7 +250,7 @@ The base uri can point to a file with any file name of your choice as long as th
 }
 ```
 
-Previous versions is an array of objects represented by the version (stringified) and uri pointing to the unique location of previously published file. Example:
+Previous versions is an array of objects represented by the version and uri pointing to the unique location of previously published file. Example:
 
 ```json
 {
