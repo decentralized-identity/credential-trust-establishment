@@ -234,7 +234,7 @@ The version of the current file is indicated by an integer. Each subsequent publ
 }
 ```
 
-The version (stringified) is used to generate a unique name of the current version of governance file followed by the file extension (.json) Example:
+The "current_version" field contains a URL pointing to the most recently published file. The specific file name at this location is determined based on the current implementation. Example:
 
 ```json
 {
