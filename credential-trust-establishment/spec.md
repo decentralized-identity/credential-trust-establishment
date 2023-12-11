@@ -226,7 +226,7 @@ Linked governance allows for governance chains to exist - the inclusion of an ex
 
 Versioning is a way to allow users of decentralized ecosystem governance to track/use the current version of published governance or track/use older version of the file. This allowes flexibility of using/tracking most current version of DEGov file at any time.
 
-The version of the current file is indicated by an integer. Each subsequent published version of this file must increment this version number by 1, ensuring a clear and linear version history. Example:
+The version number of the current file is represented as an integer. For maintaining a straightforward and sequential version history, it is advised to increment each new published version of the file by 1. This approach guarantees an orderly progression. However, it's permissible to skip version numbers as long as each subsequent version has a number greater than the previous one. Example:
 
 ```json
 {
