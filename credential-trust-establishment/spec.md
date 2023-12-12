@@ -1,13 +1,16 @@
-# Credential Trust Establishment
+# Credential Trust Establishment 1.0
 
-**Specification Status:** Strawman
+**Specification Status:** Working Group Draft
 
 **Latest Draft:**
 [identity.foundation/credential-trust-establishment](identity.foundation/credential-trust-establishment)
 
 Editors:
 ~ [Mike Ebert](https://www.linkedin.com/in/michaelebert/)
-~ [Gabe Cohen](https://www.linkedin.com/in/cohengabe/)
+~ [Sam Curren](https://github.com/TelegramSam/)
+
+Contributors:
+~ [Simon Nazarenko](https://github.com/ElderSonar/)
 
 Participate:
 ~ [GitHub repo](https://github.com/decentralized-identity/credential-trust-establishment)
