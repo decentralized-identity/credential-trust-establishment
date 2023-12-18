@@ -1,13 +1,16 @@
-# Credential Trust Establishment
+# Credential Trust Establishment 1.0
 
-**Specification Status:** Strawman
+**Specification Status:** Working Group Draft
 
 **Latest Draft:**
 [identity.foundation/credential-trust-establishment](identity.foundation/credential-trust-establishment)
 
 Editors:
 ~ [Mike Ebert](https://www.linkedin.com/in/michaelebert/)
-~ [Gabe Cohen](https://www.linkedin.com/in/cohengabe/)
+~ [Sam Curren](https://github.com/TelegramSam/)
+
+Contributors:
+~ [Simon Nazarenko](https://github.com/ElderSonar/)
 
 Participate:
 ~ [GitHub repo](https://github.com/decentralized-identity/credential-trust-establishment)
@@ -128,7 +131,7 @@ The new section contains the enumerated sections of roles for a participant, alo
 
 **start**: REQUIRED. The ISO 8601 encoded date and time of when the role was assigned to the participant.
 **end**: OPTIONAL. The ISO 8601 encoded date and time of when the role was removed from the participant. This should not be present if the end date is not known.
-**role\***: REQUIRED. The name of the role, used within the roles section of this document.
+**role**: REQUIRED. The name of the role, used within the roles section of this document.
 
 ```json
 ...
