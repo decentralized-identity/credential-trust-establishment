@@ -131,7 +131,7 @@ The new section contains the enumerated sections of roles for a participant, alo
 
 **start**: REQUIRED. The ISO 8601 encoded date and time of when the role was assigned to the participant.
 **end**: OPTIONAL. The ISO 8601 encoded date and time of when the role was removed from the participant. This should not be present if the end date is not known.
-**role\***: REQUIRED. The name of the role, used within the roles section of this document.
+**role**: REQUIRED. The name of the role, used within the roles section of this document.
 
 ```json
 ...
