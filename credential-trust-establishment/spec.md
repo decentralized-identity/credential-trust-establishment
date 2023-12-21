@@ -1,13 +1,16 @@
-# Credential Trust Establishment
+# Credential Trust Establishment 1.0
 
-**Specification Status:** Strawman
+**Specification Status:** Working Group Draft
 
 **Latest Draft:**
 [identity.foundation/credential-trust-establishment](identity.foundation/credential-trust-establishment)
 
 Editors:
 ~ [Mike Ebert](https://www.linkedin.com/in/michaelebert/)
-~ [Gabe Cohen](https://www.linkedin.com/in/cohengabe/)
+~ [Sam Curren](https://github.com/TelegramSam/)
+
+Contributors:
+~ [Simon Nazarenko](https://github.com/ElderSonar/)
 
 Participate:
 ~ [GitHub repo](https://github.com/decentralized-identity/credential-trust-establishment)
@@ -195,25 +198,25 @@ TODO: Include a note about how to link to a specific version / general version o
 
 ```json
 {
-	"@context": [
-		"https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
-	],
-	"id": "c64846d1-cf60-4ac5-835e-cbd25569f2fa",
-	"name": "University Degree Governance",
-	"description": "This document describes the governance for issuing accredited university degrees in a machine readable way",
-	"version": "1.0",
-	"format": "1.0",
-	"last_updated": "2022-04-20T04:20:00Z",
-	"author": "did:example:usdepartmentofeducation",
-	"docs_uri": "https://url-for-docs...",
-	"ttl": 86400,
-	"trusted_governance":[
-		{
-			"publisher": "did:example:publisher",
-			"uri": "https://example.com/other/trusted/goveranance"
-		}
-	]
-...
+  "@context": [
+    "https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
+  ],
+  "id": "c64846d1-cf60-4ac5-835e-cbd25569f2fa",
+  "name": "University Degree Governance",
+  "description": "This document describes the governance for issuing accredited university degrees in a machine readable way",
+  "version": "1.0",
+  "format": "1.0",
+  "last_updated": "2022-04-20T04:20:00Z",
+  "author": "did:example:usdepartmentofeducation",
+  "docs_uri": "https://url-for-docs...",
+  "ttl": 86400,
+  "trusted_governance": [
+    {
+      "publisher": "did:example:publisher",
+      "uri": "https://example.com/other/trusted/goveranance"
+    }
+  ]
+}
 ```
 
 ### Linked Goverance
@@ -222,11 +225,69 @@ Linked governance files provide a flexible mechanism for governing larger ecosys
 
 Linked governance allows for governance chains to exist - the inclusion of an external governance file allows that governance to itself reference other governance files. While in theory this allows for infiniately long chains, in practice the requirement for the publisher to trust linked files places a reasonable limit. Also see (Expectations)[#expectations] for further commentary on the responsiblities of the publisher and reader.
 
+### Versioning
+
+Versioning is a way to allow users of decentralized ecosystem governance to track/use the current version of published governance or track/use older version of the file. This allowes flexibility of using/tracking most current version of DEGov file at any time.
+
+The version number of the current file is represented as an integer. For maintaining a straightforward and sequential version history, it is advised to increment each new published version of the file by 1. This approach guarantees an orderly progression. However, it's permissible to skip version numbers as long as each subsequent version has a number greater than the previous one. Example:
+
+```json
+{
+  "version": 1
+}
+```
+
+The "current_version" field contains a URL pointing to the most recently published file. The specific file name at this location is determined based on the current implementation. Example:
+
+```json
+{
+  "current_version": "https://example.com/path/to/cte/1.json"
+}
+```
+
+The base uri can point to a file with any file name of your choice as long as this is consistent within the ecosystem you are working with. Example:
+
+```json
+{
+  "uri": "https://example.com/path/to/cte/file.json"
+}
+```
+
+Previous versions is an array of objects represented by the version and uri pointing to the unique location of previously published file. Example:
+
+```json
+{
+  "current_version": "https://example.com/path/to/cte/2.json",
+  "previous_versions": [
+    {
+      "version": 1,
+      "uri": "https://example.com/path/to/cte/1.json"
+    }
+  ]
+}
+```
+
+Full example:
+
+```json
+{
+  "version": 2,
+  "uri": "https://example.com/path/to/cte/file.json",
+  "current_version": "https://example.com/path/to/cte/2.json",
+  "previous_versions": [
+    {
+      "version": 1,
+      "uri": "https://example.com/path/to/cte/1.json"
+    }
+  ]
+}
+```
+
 # Interop Profile
 
 ---
 
-Write description here
+This Interop Profile specifies the standards and protocols for seamless interoperability in decentralized identity systems. It defines the technical requirements for digital identity verification, ensuring consistency, security, and compatibility across different platforms and systems. The profile focuses on key aspects such as cryptographic key types, identifier formats, and secure hosting protocols.
 
 ## Signing Details
 
