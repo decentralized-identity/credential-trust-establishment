@@ -283,7 +283,72 @@ Full example:
 }
 ```
 
+# Interop Profile
+
+---
+
+This Interop Profile specifies the standards and protocols for seamless interoperability in decentralized identity systems. It defines the technical requirements for digital identity verification, ensuring consistency, security, and compatibility across different platforms and systems. The profile focuses on key aspects such as cryptographic key types, identifier formats, and secure hosting protocols.
+
+## Signing Details
+
+- **Key Types**: `EdDSA`
+- **Key Identifiers**: `DID URLs` (e.g., `did:example:123#keys-1`)
+- **Signature Envelope**: `JWT`
+
+## Hosting
+
+- **Protocol**: `HTTPS`
+
+---
+
+## Example of the raw DEGov file:
+
+```json
+{
+  "author": "did:example:Hp6LQzU774ZahkJ27dhqd9",
+  "description": "Minimal governance file example",
+  "docs_uri": "https://github.com/decentralized-identity/credential-trust-establishment/blob/main/credential-trust-establishment/spec.md",
+  "format": "1.0",
+  "id": "4cb546f8-4eae-4235-a971-28e08aad5621",
+  "last_updated": 1703187439,
+  "name": "CTE Governance",
+  "version": "1",
+  "uri": "",
+  "current_version": "",
+  "previous_versions": [],
+  "schemas": [
+    {
+      "id": "Q7CyqfHss9RPK4hjwyZT32:2:User:1.0",
+      "name": "User Credential"
+    }
+  ],
+  "participants": {
+    "id": "default_participants_uuid",
+    "author": "did:example:Hp6LQzU774ZahkJ27dhqd9",
+    "created": 1703187439,
+    "version": "1",
+    "topic": "No topic provided",
+    "entries": {
+      "https://example.com/roles.schema.json": {},
+      "https://example.com/description.schema.json": {}
+    }
+  },
+  "roles": {}
+}
+```
+
+## Example of the signed DEGov file:
+
+```
+"eyJhbGciOiAiRWREU0EiLCAidHlwIjogIkpXVCIsICJraWQiOiAiZGlkOnNvdjpIcDZMUXpVNzc0WmFoa0oyN2RocWQ5I2tleS0xIn0.eyJhdXRob3IiOiAiZGlkOmV4YW1wbGU6SHA2TFF6VTc3NFphaGtKMjdkaHFkOSIsICJkZXNjcmlwdGlvbiI6ICJNaW5pbWFsIGdvdmVybmFuY2UgZmlsZSBleGFtcGxlIiwgImRvY3NfdXJpIjogImh0dHBzOi8vZ2l0aHViLmNvbS9kZWNlbnRyYWxpemVkLWlkZW50aXR5L2NyZWRlbnRpYWwtdHJ1c3QtZXN0YWJsaXNobWVudC9ibG9iL21haW4vY3JlZGVudGlhbC10cnVzdC1lc3RhYmxpc2htZW50L3NwZWMubWQiLCAiZm9ybWF0IjogIjEuMCIsICJpZCI6ICI0Y2I1NDZmOC00ZWFlLTQyMzUtYTk3MS0yOGUwOGFhZDU2MjEiLCAibGFzdF91cGRhdGVkIjogMTcwMzE4NzQzOSwgIm5hbWUiOiAiQ1RFIEdvdmVybmFuY2UiLCAidmVyc2lvbiI6ICIxIiwgInVyaSI6ICIiLCAiY3VycmVudF92ZXJzaW9uIjogIiIsICJwcmV2aW91c192ZXJzaW9ucyI6IFtdLCAic2NoZW1hcyI6IFt7ImlkIjogIlE3Q3lxZkhzczlSUEs0aGp3eVpUMzI6MjpVc2VyOjEuMCIsICJuYW1lIjogIlVzZXIgQ3JlZGVudGlhbCJ9XSwgInBhcnRpY2lwYW50cyI6IHsiaWQiOiAiZGVmYXVsdF9wYXJ0aWNpcGFudHNfdXVpZCIsICJhdXRob3IiOiAiZGlkOmV4YW1wbGU6SHA2TFF6VTc3NFphaGtKMjdkaHFkOSIsICJjcmVhdGVkIjogMTcwMzE4NzQzOSwgInZlcnNpb24iOiAiMSIsICJ0b3BpYyI6ICJObyB0b3BpYyBwcm92aWRlZCIsICJlbnRyaWVzIjogeyJodHRwczovL2V4YW1wbGUuY29tL3JvbGVzLnNjaGVtYS5qc29uIjoge30sICJodHRwczovL2V4YW1wbGUuY29tL2Rlc2NyaXB0aW9uLnNjaGVtYS5qc29uIjoge319fSwgInJvbGVzIjoge319.XimPz7gJ01GYJEjZxXg3RE0TxmvyVgCfEyT8GTA2dPljCI2yAkTKHo-93bYIA47TAETGoD4g4PnLAZX2kao0Aw"
+```
+
 ## Appendix
+
+### ACA-Py Implementation Details
+
+- **ACA-Py JWT sign endpoint**: [POST wallet/jwt/sign](https://hackmd.io/@dbluhm/jwt-sign-in-acapy)
+- **ACA-Py JWT verify endpoint**: [POST wallet/jwt/verify](https://hackmd.io/@dbluhm/jwt-sign-in-acapy)
 
 Below are three examples of governance files which include sections for schemas, trust establishment lists, roles, and governance file meta data.
 
