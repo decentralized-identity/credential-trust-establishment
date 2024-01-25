@@ -21,27 +21,80 @@ Participate:
 
 ## Introduction
 
-Once you can create a trust list using [Trust Establishment](https://identity.foundation/trust-establishment/) , it is useful to extend Trust Establishment by defining roles and linking them to credentials for situations where:
+Every use of Verifiable Credentials must evaluate the trustability of presented credentials. In addition to verifying the cryptographic signatures and proofs, it is vital to check the authority of a credential's issuer.
 
-1. Enumerating every trusted ecosystem participant in a governance file is not practical (or, in some cases, not possible).
-2. It may be desirable to verify a participant's trusted status via a trust list entry AND/OR a credential.
+Solving this problem is the focus of this specification - establishing the roles and authority of participants with an ecosystem. It answers the fundamental question: Should I trust the issuer of this credential?
 
-Some of the most important roles are those tied to the issuing and/or verifying of credentials, so it is also necessary to tie roles to credential schemas.
+This document is created, signed, and published by an ecosystem authority. This specification does not indicate qualification to be an authority. Authority is obtained through the recognition of such by ecosystem participants either by agreement, contract, law, or some other method.
 
-Collecting all of this information in one place for ecosystem participants to access is powerful and convenient. A governance file is one relatively simple method for delivering trust establishment information.
+Using the information within a document published according to this specification allows for the identification and evaluation of credential issuers. The format is lightweight, supports ecosystems both large and small, supports offline verification capabilities, and is very low cost.
+
+This specification incorporates the [Trust Establishment](https://identity.foundation/trust-establishment/) specification for the enumeration of ecosytem participants.
+
+## Requirements of Ecosystem Participants
+
+This data model is the expression about trust from the ecosystem authority, who creates, signs, and publishes the document. Any information in the document is assumed to be the carefully selected choices of the authority, including any schemas, participants, and linked governance files. Publishing the file itself places no requirement on any other participant to read or respect the opinions of the file.
+
+The published file is read by ecosystem participants to understand the opinion of the publisher. Compliance with the format places no requirement for participants to respect or follow the same opinions. Participants may  choose to respect only a portion of the published governance. Ecosystem factors outside the scope of this format may influence participant behavior.
+
+## Format Overview
 
 The following sections cover what is required to enable Credential Trust Establishment:
 
+- Metadata
 - Schemas
 - Roles
-- Linking Participants to Roles
-- Governance File Metadata
+- Participants
 
-## Participant Expectations
+The appendix contains several full examples, complete with explanation and sample file.
 
-This data model is the expression about trust from the publisher, who signs the document. Any information in the document is assumed to be the carefully selected choices of the publisher, including any schemas, participants, and linked governance files. Publishing the file itself places no requirement on any other participant to read or respect the opinions of the file.
+## Governance File Metadata
 
-The Governance File is read by ecosystem participants to understand the opinion of the publisher. Compliance with the format places no requirement for participants to respect or follow the same opinions. Participants may also choose to respect only a portion of the published governance. Ecosystem factors outside the scope of this format may influence participant behavior.
+As with Trust Establishment, it makes sense to add some meta data to the governance file to assist those who are using the file. See (Linked Governance)[#]
+
+The full University Diploma example used in this document is included as the first sample listed in the Appendix.
+
+**name**: REQUIRED. User oriented title of this document.
+
+**description**: OPTIONAL. User oriented description of this document. Usually a more informative description than the name alone.
+
+**version**: REQUIRED. Version string of this document. Must follow SemVer OR be lexographicly increasing version strings.
+
+**format**: REQUIRED. Version of this data type. Current version is "1.0"
+
+**last_updated**: REQUIRED. ISO 8601 string when this document was published.
+
+**author**: REQUIRED. DID of the party publishing this document.
+
+**docs_uri**: OPTIONAL. URI for human-oriented documentation for this governance.
+
+**ttl**: OPTIONAL. Expected length of time this version of the document is expected to be valid. This suggests to consumers of this document the interval at which it should be checked for updates.
+
+**trusted_governance** (optional): Contains a list of publisher DIDs and document URIs for goverance files trusted by the author of THIS governance file. Upon retrieval, the document must be signed by the stated publisher to be considered valid.
+TODO: Include a note about how to link to a specific version / general version of governance file when versioning is added.
+
+```json
+{
+  "@context": [
+    "https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
+  ],
+  "id": "c64846d1-cf60-4ac5-835e-cbd25569f2fa",
+  "name": "University Degree Governance",
+  "description": "This document describes the governance for issuing accredited university degrees in a machine readable way",
+  "version": "1.0",
+  "format": "1.0",
+  "last_updated": "2022-04-20T04:20:00Z",
+  "author": "did:example:usdepartmentofeducation",
+  "docs_uri": "https://url-for-docs...",
+  "ttl": 86400,
+  "trusted_governance": [
+    {
+      "publisher": "did:example:publisher",
+      "uri": "https://example.com/other/trusted/goveranance"
+    }
+  ]
+}
+```
 
 ## Schemas
 
@@ -171,54 +224,6 @@ The new section contains the enumerated sections of roles for a participant, alo
 ...
 ```
 
-## Governance File Metadata
-
-As with Trust Establishment, it makes sense to add some meta data to the governance file to assist those who are using the file. See (Linked Governance)[#]
-
-The full University Diploma example used in this document is included as the first sample listed in the Appendix.
-
-**name**: REQUIRED. User oriented title of this document.
-
-**description**: OPTIONAL. User oriented description of this document. Usually a more informative description than the name alone.
-
-**version**: REQUIRED. Version string of this document. Must follow SemVer OR be lexographicly increasing version strings.
-
-**format**: REQUIRED. Version of this data type. Current version is "1.0"
-
-**last_updated**: REQUIRED. ISO 8601 string when this document was published.
-
-**author**: REQUIRED. DID of the party publishing this document.
-
-**docs_uri**: OPTIONAL. URI for human-oriented documentation for this governance.
-
-**ttl**: OPTIONAL. Expected length of time this version of the document is expected to be valid. This suggests to consumers of this document the interval at which it should be checked for updates.
-
-**trusted_governance** (optional): Contains a list of publisher DIDs and document URIs for goverance files trusted by the author of THIS governance file. Upon retrieval, the document must be signed by the stated publisher to be considered valid.
-TODO: Include a note about how to link to a specific version / general version of governance file when versioning is added.
-
-```json
-{
-  "@context": [
-    "https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
-  ],
-  "id": "c64846d1-cf60-4ac5-835e-cbd25569f2fa",
-  "name": "University Degree Governance",
-  "description": "This document describes the governance for issuing accredited university degrees in a machine readable way",
-  "version": "1.0",
-  "format": "1.0",
-  "last_updated": "2022-04-20T04:20:00Z",
-  "author": "did:example:usdepartmentofeducation",
-  "docs_uri": "https://url-for-docs...",
-  "ttl": 86400,
-  "trusted_governance": [
-    {
-      "publisher": "did:example:publisher",
-      "uri": "https://example.com/other/trusted/goveranance"
-    }
-  ]
-}
-```
-
 ### Linked Goverance
 
 Linked governance files provide a flexible mechanism for governing larger ecosystems. Higher authorities can bundle governance together. Lower authorities can reference higher authorities. The result is a straightforward mecanism for practical ecosystem governance.
@@ -283,7 +288,13 @@ Full example:
 }
 ```
 
-# Interop Profile
+## Signing and Publishing
+
+The details of signing and publishing of the governance file are not contained within this specification. Use of this specification must be accompanied by a profile of containing the specifics of both signing and publishing.
+
+Signing must be done with a key associated with the `author` of the document.
+
+# Example Interop Profile
 
 ---
 
@@ -301,7 +312,7 @@ This Interop Profile specifies the standards and protocols for seamless interope
 
 ---
 
-## Example of the raw DEGov file:
+## Example of the plaintext DEGov file:
 
 ```json
 {
