@@ -243,7 +243,7 @@ This example shows potential roles used in a univeristy diploma ecosystem applic
 
 ## Participants
 The participants section of the document lists explicitly identified participants. There MUST be at least one participant. Most larger ecosystems will have more.
-Participants are described using the Trust Establishment specification, which allows statements to be made about a DID according to a schema. The following Schemas are officially recognized for use within this spec. Additional schemas may be specified by a profile of this specification. Uknown schemas SHOULD be ignored.
+Participants are described using the Trust Establishment specification, which allows statements to be made about a DID according to a schema. The following Schemas are officially recognized for use within this spec. Additional schemas may be specified by a profile of this specification. Unknown schemas SHOULD be ignored.
 
 - Roles
   - Required
