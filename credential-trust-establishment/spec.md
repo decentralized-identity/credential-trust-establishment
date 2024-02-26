@@ -249,7 +249,7 @@ Participants are described using the Trust Establishment specification, which al
   - Required
 - Description
   - Recommended
-- Alternate_dids
+- Aliases
   - Optional
 
 
@@ -326,8 +326,22 @@ This schema provides additional information for each identifier in the ecosystem
 ...
 ```
 
-### Alternate Identifiers
+### Aliases
 This schema allows including alternate identifiers for ecosystem participants. This helps facilitate adjustments to underlying infrastructure for participant DIDs. Each DID listed should be considered to be a fully equivilent DID to the main identifier used in the document.
+
+```json
+...
+      "https://example.com/aliases.schema.json": {
+        "did:example:usdepartmentofeducation": {
+          "alias_dids": [
+            "did:example:otherdid_a",
+            "did:example:otherdid_b"
+          ]
+        }
+      }
+
+...
+```
 
 ## Signing and Publishing
 
