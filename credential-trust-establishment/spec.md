@@ -96,6 +96,71 @@ TODO: Include a note about how to link to a specific version / general version o
 }
 ```
 
+
+### Linked Goverance
+
+Linked governance files provide a flexible mechanism for governing larger ecosystems. Higher authorities can bundle governance together. Lower authorities can reference higher authorities. The result is a straightforward mecanism for practical ecosystem governance.
+
+Linked governance allows for governance chains to exist - the inclusion of an external governance file allows that governance to itself reference other governance files. While in theory this allows for infiniately long chains, in practice the requirement for the publisher to trust linked files places a reasonable limit. Also see (Expectations)[#expectations] for further commentary on the responsiblities of the publisher and reader.
+
+### Versioning
+
+Versioning is a way to allow users of decentralized ecosystem governance to track/use the current version of published governance or track/use older version of the file. This allowes flexibility of using/tracking most current version of DEGov file at any time.
+
+The version number of the current file is represented as an integer. For maintaining a straightforward and sequential version history, it is advised to increment each new published version of the file by 1. This approach guarantees an orderly progression. However, it's permissible to skip version numbers as long as each subsequent version has a number greater than the previous one. Example:
+
+```json
+{
+  "version": 1
+}
+```
+
+The "current_version" field contains a URL pointing to the most recently published file. The specific file name at this location is determined based on the current implementation. Example:
+
+```json
+{
+  "current_version": "https://example.com/path/to/cte/1.json"
+}
+```
+
+The base uri can point to a file with any file name of your choice as long as this is consistent within the ecosystem you are working with. Example:
+
+```json
+{
+  "uri": "https://example.com/path/to/cte/file.json"
+}
+```
+
+Previous versions is an array of objects represented by the version and uri pointing to the unique location of previously published file. Example:
+
+```json
+{
+  "current_version": "https://example.com/path/to/cte/2.json",
+  "previous_versions": [
+    {
+      "version": 1,
+      "uri": "https://example.com/path/to/cte/1.json"
+    }
+  ]
+}
+```
+
+Full example:
+
+```json
+{
+  "version": 2,
+  "uri": "https://example.com/path/to/cte/file.json",
+  "current_version": "https://example.com/path/to/cte/2.json",
+  "previous_versions": [
+    {
+      "version": 1,
+      "uri": "https://example.com/path/to/cte/1.json"
+    }
+  ]
+}
+```
+
 ## Schemas
 
 The schemas section of the format specifies the schemas used in an ecosystem. Each list item describes a single schema.
@@ -176,7 +241,19 @@ This example shows potential roles used in a univeristy diploma ecosystem applic
 ...
 ```
 
-## Linking Participants to Roles
+## Participants
+The participants section of the document lists explicitly identified participants. There MUST be at least one participant. Most larger ecosystems will have more.
+Participants are described using the Trust Establishment specification, which allows statements to be made about a DID according to a schema. The following Schemas are officially recognized for use within this spec. Additional schemas may be specified by a profile of this specification. Uknown schemas SHOULD be ignored.
+
+- Roles
+  - Required
+- Description
+  - Recommended
+- Alternate_dids
+  - Optional
+
+
+### Linking Participants to Roles
 
 Once schemas are listed and roles are described, they need to be linked to the trusted participants. This is done by adding a new section to the Trust Establishment section of the document.
 
@@ -224,69 +301,33 @@ The new section contains the enumerated sections of roles for a participant, alo
 ...
 ```
 
-### Linked Goverance
-
-Linked governance files provide a flexible mechanism for governing larger ecosystems. Higher authorities can bundle governance together. Lower authorities can reference higher authorities. The result is a straightforward mecanism for practical ecosystem governance.
-
-Linked governance allows for governance chains to exist - the inclusion of an external governance file allows that governance to itself reference other governance files. While in theory this allows for infiniately long chains, in practice the requirement for the publisher to trust linked files places a reasonable limit. Also see (Expectations)[#expectations] for further commentary on the responsiblities of the publisher and reader.
-
-### Versioning
-
-Versioning is a way to allow users of decentralized ecosystem governance to track/use the current version of published governance or track/use older version of the file. This allowes flexibility of using/tracking most current version of DEGov file at any time.
-
-The version number of the current file is represented as an integer. For maintaining a straightforward and sequential version history, it is advised to increment each new published version of the file by 1. This approach guarantees an orderly progression. However, it's permissible to skip version numbers as long as each subsequent version has a number greater than the previous one. Example:
+### Description
+This schema provides additional information for each identifier in the ecosystem. This is helpful for bootstrapping ecosystems without a reliable external system of participant identity. The folowing example shows names, email addresses, and the associated website for each participant.
 
 ```json
-{
-  "version": 1
-}
+...
+      "https://example.com/description.schema.json": {
+        "did:example:usdepartmentofeducation": {
+          "name": "U.S. Department of Education",
+          "website": "https://www.ed.gov/accreditation",
+          "email": "accreditation@www.ed.gov"
+        },
+        "did:example:nwccu": {
+          "name": "Northwest Commission on Colleges and Universities",
+          "website": "http://www.nwccu.org/",
+          "email": "accrediting@nwccu.org"
+        },
+        "did:example:faberuniversity": {
+          "name": "Faber University",
+          "website": "https://faber.example.com/",
+          "email": "graduation@faber.example.com"
+        }
+      },
+...
 ```
 
-The "current_version" field contains a URL pointing to the most recently published file. The specific file name at this location is determined based on the current implementation. Example:
-
-```json
-{
-  "current_version": "https://example.com/path/to/cte/1.json"
-}
-```
-
-The base uri can point to a file with any file name of your choice as long as this is consistent within the ecosystem you are working with. Example:
-
-```json
-{
-  "uri": "https://example.com/path/to/cte/file.json"
-}
-```
-
-Previous versions is an array of objects represented by the version and uri pointing to the unique location of previously published file. Example:
-
-```json
-{
-  "current_version": "https://example.com/path/to/cte/2.json",
-  "previous_versions": [
-    {
-      "version": 1,
-      "uri": "https://example.com/path/to/cte/1.json"
-    }
-  ]
-}
-```
-
-Full example:
-
-```json
-{
-  "version": 2,
-  "uri": "https://example.com/path/to/cte/file.json",
-  "current_version": "https://example.com/path/to/cte/2.json",
-  "previous_versions": [
-    {
-      "version": 1,
-      "uri": "https://example.com/path/to/cte/1.json"
-    }
-  ]
-}
-```
+### Alternate Identifiers
+This schema allows including alternate identifiers for ecosystem participants. This helps facilitate adjustments to underlying infrastructure for participant DIDs. Each DID listed should be considered to be a fully equivilent DID to the main identifier used in the document.
 
 ## Signing and Publishing
 
@@ -295,6 +336,8 @@ The details of signing and publishing of the governance file are not contained w
 Signing must be done with a key associated with the `author` of the document.
 
 # Example Interop Profile
+
+This section describes an example interoperability profile for this specification. It contains specific examples of choices made for hosting and key types, but these are just included by example. Different choices may be made for another interop profile. 
 
 ---
 
