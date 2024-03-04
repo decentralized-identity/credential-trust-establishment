@@ -97,15 +97,15 @@ TODO: Include a note about how to link to a specific version / general version o
 ```
 
 
-### Linked Goverance
+### Linked Governance
 
-Linked governance files provide a flexible mechanism for governing larger ecosystems. Higher authorities can bundle governance together. Lower authorities can reference higher authorities. The result is a straightforward mecanism for practical ecosystem governance.
+Linked governance files provide a flexible mechanism for governing larger ecosystems. Higher authorities can bundle governance together. Lower authorities can reference higher authorities. The result is a straightforward mechanism for practical ecosystem governance.
 
-Linked governance allows for governance chains to exist - the inclusion of an external governance file allows that governance to itself reference other governance files. While in theory this allows for infiniately long chains, in practice the requirement for the publisher to trust linked files places a reasonable limit. Also see (Expectations)[#expectations] for further commentary on the responsiblities of the publisher and reader.
+Linked governance allows for governance chains to exist - the inclusion of an external governance file allows that governance to itself reference other governance files. While in theory this allows for infinitely long chains, in practice the requirement for the publisher to trust linked files places a reasonable limit. Also see (Requirements of Ecosystem Participants)[#requirements-of-ecosystem-participants] for further commentary on the responsiblities of the publisher and reader.
 
 ### Versioning
 
-Versioning is a way to allow users of decentralized ecosystem governance to track/use the current version of published governance or track/use older version of the file. This allowes flexibility of using/tracking most current version of DEGov file at any time.
+Versioning is a way to allow users of decentralized ecosystem governance to track/use the current version of published governance or track/use older version of the file.
 
 The version number of the current file is represented as an integer. For maintaining a straightforward and sequential version history, it is advised to increment each new published version of the file by 1. This approach guarantees an orderly progression. However, it's permissible to skip version numbers as long as each subsequent version has a number greater than the previous one. Example:
 
@@ -131,7 +131,7 @@ The base uri can point to a file with any file name of your choice as long as th
 }
 ```
 
-Previous versions is an array of objects represented by the version and uri pointing to the unique location of previously published file. Example:
+Previous versions are an array of objects represented by the version and uri pointing to the unique location of previously published file. Example:
 
 ```json
 {
@@ -302,7 +302,7 @@ The new section contains the enumerated sections of roles for a participant, alo
 ```
 
 ### Description
-This schema provides additional information for each identifier in the ecosystem. This is helpful for bootstrapping ecosystems without a reliable external system of participant identity. The folowing example shows names, email addresses, and the associated website for each participant.
+This schema provides additional information for each identifier in the ecosystem. This is helpful for bootstrapping ecosystems without a reliable external system of participant identity. The following example shows names, email addresses, and the associated website for each participant.
 
 ```json
 ...
@@ -327,7 +327,7 @@ This schema provides additional information for each identifier in the ecosystem
 ```
 
 ### Aliases
-This schema allows including alternate identifiers for ecosystem participants. This helps facilitate adjustments to underlying infrastructure for participant DIDs. Each DID listed should be considered to be a fully equivilent DID to the main identifier used in the document.
+This schema allows including alternate identifiers for ecosystem participants. This helps facilitate adjustments to underlying infrastructure for participant DIDs. Each DID listed should be considered to be a fully equivalent DID to the main identifier used in the document.
 
 ```json
 ...
