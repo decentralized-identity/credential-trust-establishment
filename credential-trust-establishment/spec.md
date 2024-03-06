@@ -101,7 +101,7 @@ TODO: Include a note about how to link to a specific version / general version o
 
 Linked governance files provide a flexible mechanism for governing larger ecosystems. Higher authorities can bundle governance together. Lower authorities can reference higher authorities. The result is a straightforward mechanism for practical ecosystem governance.
 
-Linked governance allows for governance chains to exist - the inclusion of an external governance file allows that governance to itself reference other governance files. While in theory this allows for infinitely long chains, in practice the requirement for the publisher to trust linked files places a reasonable limit. Also see (Requirements of Ecosystem Participants)[#requirements-of-ecosystem-participants] for further commentary on the responsiblities of the publisher and reader.
+Linked governance allows for governance chains to exist - the inclusion of an external governance file allows that governance to itself reference other governance files. While in theory this allows for infinitely long chains, in practice the requirement for the publisher to trust linked files places a reasonable limit. Also see [Requirements of Ecosystem Participants](#requirements-of-ecosystem-participants) for further commentary on the responsibilities of the publisher and reader.
 
 ### Versioning
 
@@ -209,7 +209,7 @@ Roles are described with the following attributes:
 
 Roles may omit any attributes that do not apply.
 
-This example shows potential roles used in a univeristy diploma ecosystem application.
+This example shows potential roles used in a university diploma ecosystem application.
 
 ```json
 ...
