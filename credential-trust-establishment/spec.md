@@ -347,7 +347,12 @@ This schema allows including alternate identifiers for ecosystem participants. T
 
 The details of signing and publishing of the governance file are not contained within this specification. Use of this specification must be accompanied by a profile of containing the specifics of both signing and publishing.
 
-Signing must be done with a key associated with the `author` of the document.
+Profiles must indicate the following things:
+### Method of signing
+The document MUST be signed with a key associated with the `author` of the document. The profile specifies what signing method and format is to be use within ecosystems that use the profile.
+### Hosting
+The profile specifies any restrictions on where the document is hosted. Documents MUST be hosted someplace with a URI. Access to the URI may be public, or may require authentication or access control of some kind. The profile must indicate any included methods of access control and how to gain access.
+
 
 # Example Interop Profile
 
