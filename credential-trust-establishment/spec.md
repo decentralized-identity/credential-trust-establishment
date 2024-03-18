@@ -54,6 +54,8 @@ As with Trust Establishment, it makes sense to add some meta data to the governa
 
 The full University Diploma example used in this document is included as the first sample listed in the Appendix.
 
+**id**: REQUIRED. String value that uniquely identifies the governance document with the scope of the `author`. This string MUST remain consistent across versions. Those processing the document MUST consider the value to an opaque value, and no information may be inferred by inspection of the string. 
+
 **name**: REQUIRED. User oriented title of this document.
 
 **description**: OPTIONAL. User oriented description of this document. Usually a more informative description than the name alone.
