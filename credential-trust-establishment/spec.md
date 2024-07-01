@@ -84,7 +84,7 @@ Roles are described with the following attributes:
 
 - **issue**: This is the list of the Schema IDs that this role is authorized to issue. The Schemas MUST be present in the schema section of the document.
 - **verify**: This is the list of the Schema IDs that this role is authorized to verify. The Schemas MUST be present in the schema section of the document.
-- **granted_by**: This, if present, specifies the Schema ID that, upon presentation, qualifies the subject to have this role. Any Schema specified here MUST be defined in the Schemas section of the document and aproved verifiers specified via a role defined in the Roles section.
+- **granted_by**: This, if present, specifies the Schema ID that, upon presentation, qualifies the subject to have this role. Any Schema specified here MUST be defined in the Schemas section of the document and approved verifiers specified via a role defined in the Roles section.
 
 Roles may omit any attributes that do not apply.
 
@@ -178,7 +178,7 @@ The full University Diploma example used in this document is included as the fir
 
 **description**: OPTIONAL. User oriented description of this document. Usually a more informative description than the name alone.
 
-**version**: REQUIRED. Version string of this document. Must follow SemVer OR be lexographicly increasing version strings.
+**version**: REQUIRED. Version string of this document. Must follow SemVer OR be lexicographically increasing version strings.
 
 **format**: REQUIRED. Version of this data type. Current version is "1.0"
 
