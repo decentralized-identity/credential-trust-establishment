@@ -54,7 +54,7 @@ As with Trust Establishment, it makes sense to add some meta data to the governa
 
 The full University Diploma example used in this document is included as the first sample listed in the Appendix.
 
-**id**: REQUIRED. String value that uniquely identifies the governance document with the scope of the `author`. This string MUST remain consistent across versions. Those processing the document MUST consider the value to an opaque value, and no information may be inferred by inspection of the string. 
+**id**: REQUIRED. String value that uniquely identifies the governance document with the scope of the `author`. This string MUST remain consistent across versions. Those processing the document MUST consider the value to an opaque value, and no information may be inferred by inspection of the string.
 
 **name**: REQUIRED. User oriented title of this document.
 
@@ -96,7 +96,6 @@ The full University Diploma example used in this document is included as the fir
   ]
 }
 ```
-
 
 ### Trusted Governance
 
@@ -209,7 +208,7 @@ Roles are described with the following attributes:
 
 - **issue**: This is the list of the Schema IDs that this role is authorized to issue. The Schemas MUST be present in the schema section of the document.
 - **verify**: This is the list of the Schema IDs that this role is authorized to verify. The Schemas MUST be present in the schema section of the document.
-- **granted_by**: This, if present, specifies the Schema ID that, upon presentation, qualifies the subject to have this role. Any Schema specified here MUST be defined in the Schemas section of the document and aproved verifiers specified via a role defined in the Roles section.
+- **granted_by**: This, if present, specifies the Schema ID that, upon presentation, qualifies the subject to have this role. Any Schema specified here MUST be defined in the Schemas section of the document and approved verifiers specified via a role defined in the Roles section.
 
 Roles may omit any attributes that do not apply.
 
@@ -246,6 +245,7 @@ This example shows potential roles used in a university diploma ecosystem applic
 ```
 
 ## Participants
+
 The participants section of the document lists explicitly identified participants. There MUST be at least one participant. Most larger ecosystems will have more.
 Participants are described using the Trust Establishment specification, which allows statements to be made about a DID according to a schema. The following Schemas are officially recognized for use within this spec. Additional schemas may be specified by a profile of this specification. Unknown schemas MUST be ignored.
 
@@ -255,7 +255,6 @@ Participants are described using the Trust Establishment specification, which al
   - Recommended
 - Aliases
   - Optional
-
 
 ### Linking Participants to Roles
 
@@ -306,6 +305,7 @@ The new section contains the enumerated sections of roles for a participant, alo
 ```
 
 ### Description
+
 This schema provides additional information for each identifier in the ecosystem. This is helpful for bootstrapping ecosystems without a reliable external system of participant identity. The following example shows names, email addresses, and the associated website for each participant.
 
 ```json
@@ -331,6 +331,7 @@ This schema provides additional information for each identifier in the ecosystem
 ```
 
 ### Aliases
+
 This schema allows including alternate identifiers for ecosystem participants. This helps facilitate adjustments to underlying infrastructure for participant DIDs. Each DID listed should be considered to be a fully equivalent DID to the main identifier used in the document.
 
 ```json
@@ -352,15 +353,18 @@ This schema allows including alternate identifiers for ecosystem participants. T
 The details of signing and publishing of the governance file are not contained within this specification. Use of this specification must be accompanied by a profile of containing the specifics of both signing and publishing.
 
 Profiles must indicate the following things:
-### Method of signing
-The document MUST be signed with a key associated with the `author` of the document. The profile specifies what signing method and format is to be use within ecosystems that use the profile.
-### Hosting
-The profile specifies any restrictions on where the document is hosted. Documents MUST be hosted someplace with a URI. Access to the URI may be public, or may require authentication or access control of some kind. The profile must indicate any included methods of access control and how to gain access.
 
+### Method of signing
+
+The document MUST be signed with a key associated with the `author` of the document. The profile specifies what signing method and format is to be use within ecosystems that use the profile.
+
+### Hosting
+
+The profile specifies any restrictions on where the document is hosted. Documents MUST be hosted someplace with a URI. Access to the URI may be public, or may require authentication or access control of some kind. The profile must indicate any included methods of access control and how to gain access.
 
 # Example Interop Profile
 
-This section describes an example interoperability profile for this specification. It contains specific examples of choices made for hosting and key types, but these are just included by example. Different choices may be made for another interop profile. 
+This section describes an example interoperability profile for this specification. It contains specific examples of choices made for hosting and key types, but these are just included by example. Different choices may be made for another interop profile.
 
 ---
 
