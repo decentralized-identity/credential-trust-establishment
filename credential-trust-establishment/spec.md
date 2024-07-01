@@ -1,13 +1,20 @@
+<<<<<<< HEAD
 # Credential Trust Establishment
+=======
+# Credential Trust Establishment 1.0
+>>>>>>> upstream/main
 
-**Specification Status:** Strawman
+**Specification Status:** Working Group Draft
 
 **Latest Draft:**
 [identity.foundation/credential-trust-establishment](identity.foundation/credential-trust-establishment)
 
 Editors:
 ~ [Mike Ebert](https://www.linkedin.com/in/michaelebert/)
-~ [Gabe Cohen](https://www.linkedin.com/in/cohengabe/)
+~ [Sam Curren](https://github.com/TelegramSam/)
+
+Contributors:
+~ [Simon Nazarenko](https://github.com/ElderSonar/)
 
 Participate:
 ~ [GitHub repo](https://github.com/decentralized-identity/credential-trust-establishment)
@@ -17,28 +24,167 @@ Participate:
 ---
 
 ## Introduction
+<<<<<<< HEAD
 
 Once you can create a trust list using [Trust Establishment](https://identity.foundation/trust-establishment/) , it is useful to extend Trust Establishment by defining roles and linking them to credentials for situations where:
 
 1. Enumerating every trusted ecosystem participant in a governance file is not practical (or, in some cases, not possible).
 2. It may be desirable to verify a participant's trusted status via a trust list entry AND/OR a credential.
+=======
+>>>>>>> upstream/main
 
-Some of the most important roles are those tied to the issuing and/or verifying of credentials, so it is also necessary to tie roles to credential schemas.
+Every use of Verifiable Credentials must evaluate the trustability of presented credentials. In addition to verifying the cryptographic signatures and proofs, it is vital to check the authority of a credential's issuer.
 
-Collecting all of this information in one place for ecosystem participants to access is powerful and convenient. A governance file is one relatively simple method for delivering trust establishment information.
+Solving this problem is the focus of this specification - establishing the roles and authority of participants with an ecosystem. It answers the fundamental question: Should I trust the issuer of this credential?
+
+This document is created, signed, and published by an ecosystem authority. This specification does not indicate qualification to be an authority. Authority is obtained through the recognition of such by ecosystem participants either by agreement, contract, law, or some other method.
+
+Using the information within a document published according to this specification allows for the identification and evaluation of credential issuers. The format is lightweight, supports ecosystems both large and small, supports offline verification capabilities, and is very low cost.
+
+This specification incorporates the [Trust Establishment](https://identity.foundation/trust-establishment/) specification for the enumeration of ecosytem participants.
+
+## Requirements of Ecosystem Participants
+
+This data model is the expression about trust from the ecosystem authority, who creates, signs, and publishes the document. Any information in the document is assumed to be the carefully selected choices of the authority, including any schemas, participants, and linked governance files. Publishing the file itself places no requirement on any other participant to read or respect the opinions of the file.
+
+The published file is read by ecosystem participants to understand the opinion of the publisher. Compliance with the format places no requirement for participants to respect or follow the same opinions. Participants may choose to respect only a portion of the published governance. Ecosystem factors outside the scope of this format may influence participant behavior.
+
+## Format Overview
 
 The following sections cover what is required to enable Credential Trust Establishment:
 
+<<<<<<< HEAD
+=======
+- Metadata
+>>>>>>> upstream/main
 - Schemas
 - Roles
-- Linking Participants to Roles
-- Governance File Metadata
+- Participants
 
+<<<<<<< HEAD
 ## Participant Expectations
 
 This data model is the expression about trust from the publisher, who signs the document. Any information in the document is assumed to be the carefully selected choices of the publisher, including any schemas, participants, and linked governance files. Publishing the file itself places no requirement on any other participant to read or respect the opinions of the file.
+=======
+The appendix contains several full examples, complete with explanation and sample file.
+>>>>>>> upstream/main
 
-The Governance File is read by ecosystem participants to understand the opinion of the publisher. Compliance with the format places no requirement for participants to respect or follow the same opinions. Participants may also choose to respect only a portion of the published governance. Ecosystem factors outside the scope of this format may influence participant behavior.
+## Governance File Metadata
+
+As with Trust Establishment, it makes sense to add some meta data to the governance file to assist those who are using the file. See (Linked Governance)[#]
+
+The full University Diploma example used in this document is included as the first sample listed in the Appendix.
+
+**id**: REQUIRED. String value that uniquely identifies the governance document with the scope of the `author`. This string MUST remain consistent across versions. Those processing the document MUST consider the value to an opaque value, and no information may be inferred by inspection of the string. 
+
+**name**: REQUIRED. User oriented title of this document.
+
+**description**: OPTIONAL. User oriented description of this document. Usually a more informative description than the name alone.
+
+**version**: REQUIRED. Version string of this document. Must follow SemVer OR be lexographicly increasing version strings.
+
+**format**: REQUIRED. Version of this data type. Current version is "1.0"
+
+**last_updated**: REQUIRED. ISO 8601 string when this document was published.
+
+**author**: REQUIRED. DID of the party publishing this document.
+
+**docs_uri**: OPTIONAL. URI for human-oriented documentation for this governance.
+
+**ttl**: OPTIONAL. Expected length of time this version of the document is expected to be valid. This suggests to consumers of this document the interval at which it should be checked for updates.
+
+**trusted_governance** (optional): Contains a list of publisher DIDs and document URIs for goverance files trusted by the author of THIS governance file. Upon retrieval, the document must be signed by the stated publisher to be considered valid. The provided URI may link to the general goverance URI, or to a specific version of that governance. See the [Versioning](#versioning) section for more details on URIs of specific versions.
+
+```json
+{
+  "@context": [
+    "https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
+  ],
+  "id": "c64846d1-cf60-4ac5-835e-cbd25569f2fa",
+  "name": "University Degree Governance",
+  "description": "This document describes the governance for issuing accredited university degrees in a machine readable way",
+  "version": "1.0",
+  "format": "1.0",
+  "last_updated": "2022-04-20T04:20:00Z",
+  "author": "did:example:usdepartmentofeducation",
+  "docs_uri": "https://url-for-docs...",
+  "ttl": 86400,
+  "trusted_governance": [
+    {
+      "publisher": "did:example:publisher",
+      "uri": "https://example.com/other/trusted/goveranance"
+    }
+  ]
+}
+```
+
+
+### Trusted Governance
+
+Trusted governance links provide a flexible mechanism for governing larger ecosystems. Higher authorities can bundle the governance of smaller authorities together. Lower authorities can reference higher authorities. The result is a straightforward mechanism for practical ecosystem governance.
+
+Trusted governance links allow for governance chains to exist - the inclusion of an external governance file allows that governance to itself reference other governance files. While in theory this allows for infinitely long chains, in practice the requirement for the publisher to trust linked files places a reasonable limit. Also see [Requirements of Ecosystem Participants](#requirements-of-ecosystem-participants) for further commentary on the responsibilities of the publisher and reader.
+
+### Versioning
+
+Versioning is a way to allow users of decentralized ecosystem governance to track/use the current version of published governance or track/use older version of the file.
+
+The version number of the current file MUST be an integer. The version number MUST increase for each published version.
+Example:
+
+```json
+{
+  "version": 1
+}
+```
+
+The "current_version" field contains a URL pointing to the most recently published file. The specific file name at this location is determined based on the current implementation. Example:
+
+```json
+{
+  "current_version": "https://example.com/path/to/cte/1.json"
+}
+```
+
+The base uri can point to a file with any file name of your choice as long as this is consistent within the ecosystem you are working with. Example:
+
+```json
+{
+  "uri": "https://example.com/path/to/cte/file.json"
+}
+```
+
+Previous versions are an array of objects represented by the version and uri pointing to the unique location of previously published file. Example:
+
+```json
+{
+  "current_version": "https://example.com/path/to/cte/2.json",
+  "previous_versions": [
+    {
+      "version": 1,
+      "uri": "https://example.com/path/to/cte/1.json"
+    }
+  ]
+}
+```
+
+Full example of versioning information:
+
+```json
+{
+  "version": 2,
+  "uri": "https://example.com/path/to/cte/file.json",
+  "current_version": "https://example.com/path/to/cte/2.json",
+  "previous_versions": [
+    {
+      "version": 1,
+      "uri": "https://example.com/path/to/cte/1.json"
+    }
+  ]
+}
+```
+
+Publishing a new version of the document requires creating, signing, and hosting two different files: the file specific to the version, and an updated file for the general URI. The file is identical, but is hosted at two different URIs.
 
 ## Schemas
 
@@ -88,7 +234,7 @@ Roles are described with the following attributes:
 
 Roles may omit any attributes that do not apply.
 
-This example shows potential roles used in a univeristy diploma ecosystem application.
+This example shows potential roles used in a university diploma ecosystem application.
 
 ```json
 ...
@@ -120,7 +266,23 @@ This example shows potential roles used in a univeristy diploma ecosystem applic
 ...
 ```
 
+<<<<<<< HEAD
 ## Linking Participants to Roles
+=======
+## Participants
+The participants section of the document lists explicitly identified participants. There MUST be at least one participant. Most larger ecosystems will have more.
+Participants are described using the Trust Establishment specification, which allows statements to be made about a DID according to a schema. The following Schemas are officially recognized for use within this spec. Additional schemas may be specified by a profile of this specification. Unknown schemas MUST be ignored.
+
+- Roles
+  - Required
+- Description
+  - Recommended
+- Aliases
+  - Optional
+
+
+### Linking Participants to Roles
+>>>>>>> upstream/main
 
 Once schemas are listed and roles are described, they need to be linked to the trusted participants. This is done by adding a new section to the Trust Establishment section of the document.
 
@@ -168,6 +330,7 @@ The new section contains the enumerated sections of roles for a participant, alo
 ...
 ```
 
+<<<<<<< HEAD
 ## Governance File Metadata
 
 As with Trust Establishment, it makes sense to add some meta data to the governance file to assist those who are using the file. See (Linked Governance)[#]
@@ -192,38 +355,128 @@ The full University Diploma example used in this document is included as the fir
 
 **trusted_governance** (optional): Contains a list of publisher DIDs and document URIs for goverance files trusted by the author of THIS governance file. Upon retrieval, the document must be signed by the stated publisher to be considered valid.
 TODO: Include a note about how to link to a specific version / general version of governance file when versioning is added.
+=======
+### Description
+This schema provides additional information for each identifier in the ecosystem. This is helpful for bootstrapping ecosystems without a reliable external system of participant identity. The following example shows names, email addresses, and the associated website for each participant.
+>>>>>>> upstream/main
 
 ```json
-{
-	"@context": [
-		"https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
-	],
-	"id": "c64846d1-cf60-4ac5-835e-cbd25569f2fa",
-	"name": "University Degree Governance",
-	"description": "This document describes the governance for issuing accredited university degrees in a machine readable way",
-	"version": "1.0",
-	"format": "1.0",
-	"last_updated": "2022-04-20T04:20:00Z",
-	"author": "did:example:usdepartmentofeducation",
-	"docs_uri": "https://url-for-docs...",
-	"ttl": 86400,
-	"trusted_governance":[
-		{
-			"publisher": "did:example:publisher",
-			"uri": "https://example.com/other/trusted/goveranance"
-		}
-	]
+...
+      "https://example.com/description.schema.json": {
+        "did:example:usdepartmentofeducation": {
+          "name": "U.S. Department of Education",
+          "website": "https://www.ed.gov/accreditation",
+          "email": "accreditation@www.ed.gov"
+        },
+        "did:example:nwccu": {
+          "name": "Northwest Commission on Colleges and Universities",
+          "website": "http://www.nwccu.org/",
+          "email": "accrediting@nwccu.org"
+        },
+        "did:example:faberuniversity": {
+          "name": "Faber University",
+          "website": "https://faber.example.com/",
+          "email": "graduation@faber.example.com"
+        }
+      },
 ...
 ```
 
-### Linked Goverance
+### Aliases
+This schema allows including alternate identifiers for ecosystem participants. This helps facilitate adjustments to underlying infrastructure for participant DIDs. Each DID listed should be considered to be a fully equivalent DID to the main identifier used in the document.
 
-Linked governance files provide a flexible mechanism for governing larger ecosystems. Higher authorities can bundle governance together. Lower authorities can reference higher authorities. The result is a straightforward mecanism for practical ecosystem governance.
+```json
+...
+      "https://example.com/aliases.schema.json": {
+        "did:example:usdepartmentofeducation": {
+          "alias_dids": [
+            "did:example:otherdid_a",
+            "did:example:otherdid_b"
+          ]
+        }
+      }
 
-Linked governance allows for governance chains to exist - the inclusion of an external governance file allows that governance to itself reference other governance files. While in theory this allows for infiniately long chains, in practice the requirement for the publisher to trust linked files places a reasonable limit. Also see (Expectations)[#expectations] for further commentary on the responsiblities of the publisher and reader.
+...
+```
 
+## Signing and Publishing
+
+The details of signing and publishing of the governance file are not contained within this specification. Use of this specification must be accompanied by a profile of containing the specifics of both signing and publishing.
+
+Profiles must indicate the following things:
+### Method of signing
+The document MUST be signed with a key associated with the `author` of the document. The profile specifies what signing method and format is to be use within ecosystems that use the profile.
+### Hosting
+The profile specifies any restrictions on where the document is hosted. Documents MUST be hosted someplace with a URI. Access to the URI may be public, or may require authentication or access control of some kind. The profile must indicate any included methods of access control and how to gain access.
+
+
+# Example Interop Profile
+
+This section describes an example interoperability profile for this specification. It contains specific examples of choices made for hosting and key types, but these are just included by example. Different choices may be made for another interop profile. 
+
+---
+
+This Interop Profile specifies the standards and protocols for seamless interoperability in decentralized identity systems. It defines the technical requirements for digital identity verification, ensuring consistency, security, and compatibility across different platforms and systems. The profile focuses on key aspects such as cryptographic key types, identifier formats, and secure hosting protocols.
+
+## Signing Details
+
+- **Key Types**: `EdDSA`
+- **Key Identifiers**: `DID URLs` (e.g., `did:example:123#keys-1`)
+- **Signature Envelope**: `JWT`
+
+## Hosting
+
+- **Protocol**: `HTTPS`
+
+---
+
+## Example of the plaintext DEGov file:
+
+```json
+{
+  "author": "did:example:Hp6LQzU774ZahkJ27dhqd9",
+  "description": "Minimal governance file example",
+  "docs_uri": "https://github.com/decentralized-identity/credential-trust-establishment/blob/main/credential-trust-establishment/spec.md",
+  "format": "1.0",
+  "id": "4cb546f8-4eae-4235-a971-28e08aad5621",
+  "last_updated": 1703187439,
+  "name": "CTE Governance",
+  "version": "1",
+  "uri": "",
+  "current_version": "",
+  "previous_versions": [],
+  "schemas": [
+    {
+      "id": "Q7CyqfHss9RPK4hjwyZT32:2:User:1.0",
+      "name": "User Credential"
+    }
+  ],
+  "participants": {
+    "id": "default_participants_uuid",
+    "author": "did:example:Hp6LQzU774ZahkJ27dhqd9",
+    "created": 1703187439,
+    "version": "1",
+    "topic": "No topic provided",
+    "entries": {
+      "https://example.com/roles.schema.json": {},
+      "https://example.com/description.schema.json": {}
+    }
+  },
+  "roles": {}
+}
+```
+
+## Example of the signed DEGov file:
+
+```
+"eyJhbGciOiAiRWREU0EiLCAidHlwIjogIkpXVCIsICJraWQiOiAiZGlkOnNvdjpIcDZMUXpVNzc0WmFoa0oyN2RocWQ5I2tleS0xIn0.eyJhdXRob3IiOiAiZGlkOmV4YW1wbGU6SHA2TFF6VTc3NFphaGtKMjdkaHFkOSIsICJkZXNjcmlwdGlvbiI6ICJNaW5pbWFsIGdvdmVybmFuY2UgZmlsZSBleGFtcGxlIiwgImRvY3NfdXJpIjogImh0dHBzOi8vZ2l0aHViLmNvbS9kZWNlbnRyYWxpemVkLWlkZW50aXR5L2NyZWRlbnRpYWwtdHJ1c3QtZXN0YWJsaXNobWVudC9ibG9iL21haW4vY3JlZGVudGlhbC10cnVzdC1lc3RhYmxpc2htZW50L3NwZWMubWQiLCAiZm9ybWF0IjogIjEuMCIsICJpZCI6ICI0Y2I1NDZmOC00ZWFlLTQyMzUtYTk3MS0yOGUwOGFhZDU2MjEiLCAibGFzdF91cGRhdGVkIjogMTcwMzE4NzQzOSwgIm5hbWUiOiAiQ1RFIEdvdmVybmFuY2UiLCAidmVyc2lvbiI6ICIxIiwgInVyaSI6ICIiLCAiY3VycmVudF92ZXJzaW9uIjogIiIsICJwcmV2aW91c192ZXJzaW9ucyI6IFtdLCAic2NoZW1hcyI6IFt7ImlkIjogIlE3Q3lxZkhzczlSUEs0aGp3eVpUMzI6MjpVc2VyOjEuMCIsICJuYW1lIjogIlVzZXIgQ3JlZGVudGlhbCJ9XSwgInBhcnRpY2lwYW50cyI6IHsiaWQiOiAiZGVmYXVsdF9wYXJ0aWNpcGFudHNfdXVpZCIsICJhdXRob3IiOiAiZGlkOmV4YW1wbGU6SHA2TFF6VTc3NFphaGtKMjdkaHFkOSIsICJjcmVhdGVkIjogMTcwMzE4NzQzOSwgInZlcnNpb24iOiAiMSIsICJ0b3BpYyI6ICJObyB0b3BpYyBwcm92aWRlZCIsICJlbnRyaWVzIjogeyJodHRwczovL2V4YW1wbGUuY29tL3JvbGVzLnNjaGVtYS5qc29uIjoge30sICJodHRwczovL2V4YW1wbGUuY29tL2Rlc2NyaXB0aW9uLnNjaGVtYS5qc29uIjoge319fSwgInJvbGVzIjoge319.XimPz7gJ01GYJEjZxXg3RE0TxmvyVgCfEyT8GTA2dPljCI2yAkTKHo-93bYIA47TAETGoD4g4PnLAZX2kao0Aw"
+```
+
+<<<<<<< HEAD
 ## Appendix
 
+=======
+>>>>>>> upstream/main
 Below are three examples of governance files which include sections for schemas, trust establishment lists, roles, and governance file meta data.
 
 ### University Diploma Example
@@ -414,7 +667,7 @@ The governance file lists three roles: one for the DIF itself, one for organizat
 					"email": "membership@identity.foundation"
 				},
 				"did:example:acme":{
-					"name": "Indicio",
+					"name": "ACME",
 					"website": "https://example.com/",
 					"email": "contact@example.com"
 				}
@@ -450,31 +703,46 @@ The governance file lists three roles: one for the DIF itself, one for organizat
 }
 ```
 
+<<<<<<< HEAD
 ### Aries Email Ecosystem Example
 
 The Aries community shares code, demos, and examples to promote interoperability and community education.
 The Aries community could create a simple demo that shows how agents, credential issuance and verification, and basic governance work in a simple
 email-based ecosystem.
+=======
+### Verified Email Ecosystem Example
+
+A community could create a simple demo that shows how agents, credential issuance and verification, and basic governance work in a simple
+email-based ecosystem. The Authority listed is generic, but could be a working group, a company, an industry association, or any other party that wished to use verified email addresses in their ecosystem.
+>>>>>>> upstream/main
 
 There are two schemas used--one for an individual's email credential and one for authorizing issuers of the email credentials.
 
 There are three tiers of participants:
 
+<<<<<<< HEAD
 1. The Aries Working Group which runs the ecosystem and authorizes other parties
+=======
+1. The authority which runs the ecosystem and authorizes other parties
+>>>>>>> upstream/main
 2. Issuers (organizations or individuals) which wish to support the demo ecosystem by issuing and/or verifying email credentials
 3. Individuals who receive an email credential from an authorized email issuer and verify with whomever they choose to present the credential to
 
-The Aries Working Group (AWG) is a single participant and is only included in the governance file. The email issuer tier can be authorized via explicitly
+The authority is a single participant and is only included in the governance file. The email issuer tier can be authorized via explicitly
 listed participantes or via an Email Issuer credential. Individuals could be listed but are likely to participate via credentials only.
 
-The governance file lists three roles: one for the AWG itself, one for issuers, and one for individuals.
+The governance file lists three roles: one for the authority itself, one for issuers, and one for individuals.
 
 ```json
 {
   "@context": [
     "https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
   ],
+<<<<<<< HEAD
   "name": "Aries Working Group Email Governance",
+=======
+  "name": "Email Governance",
+>>>>>>> upstream/main
   "version": "1.0",
   "format": "1.1",
   "id": "<uuid>",
@@ -498,10 +766,17 @@ The governance file lists three roles: one for the AWG itself, one for issuers, 
     "version": 2,
     "entries": {
       "https://example.com/description.schema.json": {
+<<<<<<< HEAD
         "did:example:awg": {
           "name": "Aries Working Group",
           "website": "https://wiki.hyperledger.org/display/ARIES/Aries+Working+Group",
           "email": "awg@hyperledger.org"
+=======
+        "did:example:authority": {
+          "name": "Authority",
+          "website": "https://example.com/",
+          "email": "authority@example.org"
+>>>>>>> upstream/main
         },
         "did:example:acme": {
           "name": "ACME",
@@ -510,10 +785,17 @@ The governance file lists three roles: one for the AWG itself, one for issuers, 
         }
       },
       "https://example.com/roles.schema.json": {
+<<<<<<< HEAD
         "did:example:awg": [
           {
             "start": "2020-01-01 00:00:00Z",
             "role": "awg"
+=======
+        "did:example:authority": [
+          {
+            "start": "2020-01-01 00:00:00Z",
+            "role": "authority"
+>>>>>>> upstream/main
           }
         ],
         "did:example:acme": [
@@ -526,7 +808,11 @@ The governance file lists three roles: one for the AWG itself, one for issuers, 
     }
   },
   "roles": {
+<<<<<<< HEAD
     "awg": {
+=======
+    "authority": {
+>>>>>>> upstream/main
       "issue": ["uri:example:RuuJwd3JMffNwZ43DcJKN1:2:Email_Issuer:1.4"]
     },
     "email_issuer": {
