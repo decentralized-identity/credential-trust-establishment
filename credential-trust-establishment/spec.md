@@ -592,13 +592,11 @@ The governance file lists three roles: one for the DIF itself, one for organizat
 	"schemas": [
 		{
 			"id": "uri:example:RuuJwd3JMffNwZ43DcJKN1:2:DIF_Member_Organization:1.4",
-			"name": "DIF Member Organization",
-			"issuer_roles": ["dif"]
+			"name": "DIF Member Organization"
 		},
 		{
 			"id": "uri:example:4CLG5pU5v294VdkMWxSByu:2:DIF_Member_Individual:1.0",
-			"name": "DIF Individual Member",
-			"issuer_roles": ["dif", "dif_member_organization"],
+			"name": "DIF Individual Member"
 		}
 	],
 	"participants": {
@@ -622,14 +620,14 @@ The governance file lists three roles: one for the DIF itself, one for organizat
 			"https://example.com/roles.schema.json":{
 				"did:example:dif": [
 					{
-							"start": "2020-01-01 00:00:00Z",
-							"role": "dif"
+            "start": "2020-01-01 00:00:00Z",
+            "role": "dif"
 					}
 				],
 				"did:example:acme":{
 					{
-							"start": "2020-01-01 00:00:00Z",
-							"role": "dif_member_organization"
+            "start": "2020-01-01 00:00:00Z",
+            "role": "dif_member_organization"
 					}
 				}
 			}
