@@ -77,7 +77,7 @@ The full University Diploma example used in this document is included as the fir
 ```json
 {
   "@context": [
-    "https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
+    "https://identity.foundation/credential-trust-establishment/context.jsonld"
   ],
   "id": "c64846d1-cf60-4ac5-835e-cbd25569f2fa",
   "name": "University Degree Governance",
@@ -268,7 +268,7 @@ The new section contains the enumerated sections of roles for a participant, alo
 
 ```json
 ...
-			"https://example.com/roles.schema.json": {
+			"https://identity.foundation/credential-trust-establishment/schemas/roles.json": {
 				"did:example:usdepartmentofeducation": {
 					"roles": [
 						{
@@ -310,7 +310,7 @@ This schema provides additional information for each identifier in the ecosystem
 
 ```json
 ...
-      "https://example.com/description.schema.json": {
+      "https://identity.foundation/credential-trust-establishment/schemas/description.json": {
         "did:example:usdepartmentofeducation": {
           "name": "U.S. Department of Education",
           "website": "https://www.ed.gov/accreditation",
@@ -336,7 +336,7 @@ This schema allows including alternate identifiers for ecosystem participants. T
 
 ```json
 ...
-      "https://example.com/aliases.schema.json": {
+      "https://identity.foundation/credential-trust-establishment/schemas/alias.json": {
         "did:example:usdepartmentofeducation": {
           "alias_dids": [
             "did:example:otherdid_a",
@@ -386,6 +386,9 @@ This Interop Profile specifies the standards and protocols for seamless interope
 
 ```json
 {
+  "@context": [
+    "https://identity.foundation/credential-trust-establishment/context.jsonld"
+  ],
   "author": "did:example:Hp6LQzU774ZahkJ27dhqd9",
   "description": "Minimal governance file example",
   "docs_uri": "https://github.com/decentralized-identity/credential-trust-establishment/blob/main/credential-trust-establishment/spec.md",
@@ -447,7 +450,7 @@ Finally, universities verify student IDs and issue degrees (such as a bachelors 
 ```json
 {
   "@context": [
-    "https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
+    "https://identity.foundation/credential-trust-establishment/context.jsonld"
   ],
   "id": "c64846d1-cf60-4ac5-835e-cbd25569f2fa",
   "name": "University Degree Governance",
@@ -482,7 +485,7 @@ Finally, universities verify student IDs and issue degrees (such as a bachelors 
     "created": "2022-04-20T04:20:00Z",
     "version": 2,
     "entries": {
-      "https://example.com/description.schema.json": {
+      "https://identity.foundation/credential-trust-establishment/schemas/description.json": {
         "did:example:usdepartmentofeducation": {
           "name": "U.S. Department of Education",
           "website": "https://www.ed.gov/accreditation",
@@ -499,7 +502,7 @@ Finally, universities verify student IDs and issue degrees (such as a bachelors 
           "email": "graduation@faber.example.com"
         }
       },
-      "https://example.com/roles.schema.json": {
+      "https://identity.foundation/credential-trust-establishment/schemas/roles.json": {
         "did:example:usdepartmentofeducation": {
           "roles": [
             {
@@ -580,7 +583,7 @@ The governance file lists three roles: one for the DIF itself, one for organizat
 ```json
 {
 	"@context": [
-		"https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
+		"https://identity.foundation/credential-trust-establishment/context.jsonld"
 	],
 	"name": "DIF Membership Governance",
 	"version": "1.0",
@@ -607,7 +610,7 @@ The governance file lists three roles: one for the DIF itself, one for organizat
 		"created": "2020-01-01T19:23:24Z",
 		"version": 2,
 		"entries": {
-			"https://example.com/description.schema.json": {
+			"https://identity.foundation/credential-trust-establishment/schemas/description.json": {
 				"did:example:dif": {
 					"name": "Decentralized Identity Foundation",
 					"website": "https://identity.foundation/",
@@ -619,7 +622,7 @@ The governance file lists three roles: one for the DIF itself, one for organizat
 					"email": "contact@example.com"
 				}
 			},
-			"https://example.com/roles.schema.json":{
+			"https://identity.foundation/credential-trust-establishment/schemas/roles.json":{
 				"did:example:dif": [
 					{
 							"start": "2020-01-01 00:00:00Z",
@@ -671,7 +674,7 @@ The governance file lists three roles: one for the authority itself, one for iss
 ```json
 {
   "@context": [
-    "https://github.com/hyperledger/aries-rfcs/blob/main/concepts/0430-machine-readable-governance-frameworks/context.jsonld"
+    "https://identity.foundation/credential-trust-establishment/context.jsonld"
   ],
   "name": "Email Governance",
   "version": "1.0",
@@ -696,7 +699,7 @@ The governance file lists three roles: one for the authority itself, one for iss
     "created": "2022-01-01T19:23:24Z",
     "version": 2,
     "entries": {
-      "https://example.com/description.schema.json": {
+      "https://identity.foundation/credential-trust-establishment/schemas/description.json": {
         "did:example:authority": {
           "name": "Authority",
           "website": "https://example.com/",
@@ -708,8 +711,8 @@ The governance file lists three roles: one for the authority itself, one for iss
           "email": "contact@example.com"
         }
       },
-      "https://example.com/roles.schema.json": {
         "did:example:authority": [
+      "https://identity.foundation/credential-trust-establishment/schemas/roles.json": {
           {
             "start": "2020-01-01 00:00:00Z",
             "role": "authority"
