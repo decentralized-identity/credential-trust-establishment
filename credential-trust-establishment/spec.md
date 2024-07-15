@@ -1,6 +1,6 @@
 # Credential Trust Establishment 1.0
 
-**Specification Status:** Working Group Draft
+**Specification Status:** DIF Ratified Specification
 
 **Latest Draft:**
 [identity.foundation/credential-trust-establishment](identity.foundation/credential-trust-establishment)
