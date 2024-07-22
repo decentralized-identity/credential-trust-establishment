@@ -3,7 +3,7 @@
 **Specification Status:** Working Group Draft
 
 **Latest Draft:**
-[identity.foundation/credential-trust-establishment](identity.foundation/credential-trust-establishment)
+[identity.foundation/credential-trust-establishment](https://identity.foundation/credential-trust-establishment)
 
 Editors:
 ~ [Mike Ebert](https://www.linkedin.com/in/michaelebert/)
