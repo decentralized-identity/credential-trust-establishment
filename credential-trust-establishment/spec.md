@@ -31,6 +31,8 @@ Using the information within a document published according to this specificatio
 
 This specification incorporates the [Trust Establishment](https://identity.foundation/trust-establishment/) specification for the enumeration of ecosytem participants.
 
+![CTE Diagram](cte_diagram.png)
+
 ## Requirements of Ecosystem Participants
 
 This data model is the expression about trust from the ecosystem authority, who creates, signs, and publishes the document. Any information in the document is assumed to be the carefully selected choices of the authority, including any schemas, participants, and linked governance files. Publishing the file itself places no requirement on any other participant to read or respect the opinions of the file.
