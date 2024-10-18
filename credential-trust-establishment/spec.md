@@ -31,7 +31,6 @@ Using the information within a document published according to this specificatio
 
 This specification incorporates the [Trust Establishment](https://identity.foundation/trust-establishment/) specification for the enumeration of ecosytem participants.
 
-
 <img src="cte_diagram.png"/>
 
 ## Requirements of Ecosystem Participants
