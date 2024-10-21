@@ -3,7 +3,7 @@
 **Specification Status:** DIF Ratified Specification
 
 **Latest Draft:**
-[identity.foundation/credential-trust-establishment](identity.foundation/credential-trust-establishment)
+[identity.foundation/credential-trust-establishment](https://identity.foundation/credential-trust-establishment)
 
 Editors:
 ~ [Mike Ebert](https://www.linkedin.com/in/michaelebert/)
@@ -30,6 +30,8 @@ This document is created, signed, and published by an ecosystem authority. This 
 Using the information within a document published according to this specification allows for the identification and evaluation of credential issuers. The format is lightweight, supports ecosystems both large and small, supports offline verification capabilities, and is very low cost.
 
 This specification incorporates the [Trust Establishment](https://identity.foundation/trust-establishment/) specification for the enumeration of ecosytem participants.
+
+<img src="cte_diagram.png"/>
 
 ## Requirements of Ecosystem Participants
 
